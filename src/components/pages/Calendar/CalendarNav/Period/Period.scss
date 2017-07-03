@@ -2,11 +2,9 @@
 
 
 .period {
-    font-family: $font;
     font-size: rem(14);
-    &__text {
-        color: $fc-gray-main;
-    }
+    align-self: center;
+
     &__choose {
         display: inline-block;
         margin-left: rem(15);
@@ -25,7 +23,7 @@
         cursor: pointer;
     }
     &__menu {
-        position: relative;
+        position: absolute;
         width: rem(70);
         margin: rem(17) 0 0 rem(100);
         -webkit-padding-start: 0;

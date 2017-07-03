@@ -1,9 +1,10 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 
 import './MonthCell.scss';
-import TypeEvent from '../../TypeEvent/TypeEvent';
+
 
 
 export default class MonthCell extends React.Component {
@@ -32,9 +33,13 @@ export default class MonthCell extends React.Component {
                 <span className="date">
                     {this.props.cellDate.format('DD')}
                 </span>
-
+                {this.props.children}
             </div>
         )
     }
 }
 
+MonthCell.propTypes = {
+    cellDate: PropTypes.shape().isRequired,
+    children: PropTypes.node
+};

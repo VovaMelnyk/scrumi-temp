@@ -1,25 +1,17 @@
-.week-days {
+@import'../../../Theme/theme';
+.week {
     display: flex;
-    list-style: none;
     justify-content: space-between;
+    &__item {
+        width: 14%;
+        height: rem(40);
+        line-height: 2.5rem;
+        text-align: center;
+        background-color: #ececec;
+        box-shadow: 0 rem(1) rem(1) 0 #a9a9a9;
+    }
 }
 
-.week-days__item {
-    width: 14.2%;
-    text-align: center;
-    height: 40px;
-    background: #ececec;
-    line-height: 2.5rem;
-}
-
-.container {
-    display: flex;
-    width: 30%;
-}
-
-.container p {
-    margin:0 0 0 15px;
-}
 
 .c-calendar {
     display: flex;

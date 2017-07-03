@@ -49,15 +49,15 @@ export default class Calendar extends React.Component {
                 period = {this.state.fromDate}
                 onClick = {this.switchMonth}
                 />
-                <span
-                    id='date-field'
-                    onClick={this.handleClick}>{this.state.fromDate.format('DD MMMM YYYY')}
-                </span>
-                {this.state.visible &&
-                    <DatePicker selectedDate={moment(this.state.fromDate)}
-                    hideDatePicker={this.handleClick}
-                    handleSelect={this.handleSelect}/>
-                }
+                {/*<span*/}
+                    {/*id='date-field'*/}
+                    {/*onClick={this.handleClick}>{this.state.fromDate.format('DD MMMM YYYY')}*/}
+                {/*</span>*/}
+                {/*{this.state.visible &&*/}
+                    {/*<DatePicker selectedDate={moment(this.state.fromDate)}*/}
+                    {/*hideDatePicker={this.handleClick}*/}
+                    {/*handleSelect={this.handleSelect}/>*/}
+                {/*}*/}
                 <Route exact path='/calendar' render={()=><Month period={this.state.fromDate}/>}/>
                 <Route  path='/calendar/sprint' component={Sprint} />
             </div>

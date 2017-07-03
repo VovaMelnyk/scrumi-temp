@@ -12,15 +12,15 @@ import MonthCell from './MonthCell/MonthCell';
 const WeekDays = () => {
     let days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
     return (
-        <ul className='week-days'>
+        <div className='week'>
             {_.map(days,(day) => {
-                return <li className='week-days__item'
+                return <span className='week__item'
                            key={day}
                 >
                     {day}
-                </li>
+                </span>
             })}
-        </ul>
+        </div>
     )
 };
 

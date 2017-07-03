@@ -6,10 +6,10 @@ import './TypeEvent.scss';
 
 const TypeEvent = (props) => {
     let types = [
-        {title:'Custom event', key:'custom'},
-        {title:'Stand Up', key:'standup'},
-        {title:'Demo', key:'demo'},
-        {title:'Retro', key:'retro'}
+        {title:'Событие', key:'custom'},
+        {title:'Стендап', key:'standup'},
+        {title:'Демо', key:'demo'},
+        {title:'Ретро', key:'retro'}
     ];
     return(
         <ul className='c-type-list'>
