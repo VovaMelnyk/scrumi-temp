@@ -1,6 +1,7 @@
-#date-field {
-    display: inline-block;
-    margin: 10px 0 30px;
-    cursor: pointer;
-    text-decoration: underline;
+.cell {
+    overflow: hidden;
+    outline: solid 1px green;
+    display: block;
+    width: 10rem;
+    height: 10rem;
 }

@@ -128,7 +128,7 @@ class EventWindow extends React.Component {
                             defaultValue={this.props.event ? this.props.event.title : ''}
                             ref={(input) => { this.eventTitle = input; }}
                         />
-                        <TypeEvent onClick=''/>
+                        <span>тип события</span>
                         {dateBlock}
                         {infoBlock}
                         {buttonBlock}
