@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import DatePickerCell from './DatePickerCell/DatePickerCell';
+import TimePicker from './TimePicker/TimePicker';
 import moment from 'moment';
 import _ from 'lodash';
 import uuid from 'uuid';
@@ -31,16 +32,38 @@ class DatePicker extends React.Component {
         super(props);
 
         this.state = {
+            visible: true,
+            showTime: this.props.showTime,
             selectedDate: props.selectedDate,
             shownMonth: props.selectedDate.format('MM.YYYY')
         };
-
+        moment.locale('ru');
         this.changeMonth = this.changeMonth.bind(this);
         this.selectDate = this.selectDate.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.stopPropagation = this.stopPropagation.bind(this);
     }
 
     componentDidMount() {
-        this.textInput.focus();
+        window.addEventListener('click', this.handleClick, false);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('click', this.handleClick, false);
+    }
+
+    stopPropagation(e) {
+        e.stopPropagation();
+    }
+
+    handleClick(e) {
+        if (this.state.visible) {
+            this.setState({
+                visible: false
+            });
+            return
+        }
+        this.props.handleClickOutside();
     }
 
     createDateArray(month = moment().format('MM.YYYY')) {
@@ -66,9 +89,13 @@ class DatePicker extends React.Component {
         })
     }
 
-    selectDate(newDate) {
+    selectDate(newValue) {
+        let newDate = moment(newValue);
         this.setState({
-                selectedDate: moment(newDate)
+            selectedDate: moment(this.state.selectedDate)
+                .year(newDate.year())
+                .month(newDate.month())
+                .date(newDate.date())
         });
         if (typeof this.props.handleSelect == 'function') {
             this.props.handleSelect(moment(newDate));
@@ -79,7 +106,10 @@ class DatePicker extends React.Component {
             return <DatePickerCell
                 key={uuid()}
                 className={this.props.className}
-                cellDate={moment(cellDate)}
+                cellDate={moment(cellDate)
+                    .hour(this.state.selectedDate.hour())
+                    .minute(this.state.selectedDate.minute())
+                }
                 shownMonth={this.state.shownMonth}
                 selectedDate={this.state.selectedDate}
                 handleClick={this.selectDate}
@@ -89,8 +119,7 @@ class DatePicker extends React.Component {
             <div className={this.props.className}
                  tabIndex='0'
                  autoFocus=''
-                 onBlur={this.props.hideDatePicker}
-                 ref={(input) => { this.textInput = input; }}
+                 onClick={this.stopPropagation}
             >
                 <div className={`${this.props.className}__nav`}>
                     <span
@@ -109,6 +138,10 @@ class DatePicker extends React.Component {
                 <ul className={`${this.props.className}__grid`}>
                     {items}
                 </ul>
+                {!this.props.disableTime && <TimePicker
+                    handleTimeChange={this.props.handleTimeChange}
+                    selectedTime={this.state.showTime ? this.props.selectedDate : null}
+                />}
             </div>
         )
     }
@@ -116,13 +149,19 @@ class DatePicker extends React.Component {
 
 DatePicker.propTypes = {
     className: PropTypes.string.isRequired,
-    selectedDate: PropTypes.object.isRequired,
-    handleSelect: PropTypes.func.isRequired
+    selectedDate: PropTypes.shape().isRequired,
+    handleSelect: PropTypes.func.isRequired,
+    handleClickOutside: PropTypes.func.isRequired,
+    handleTimeChange: PropTypes.func.isRequired,
+    disableTime: PropTypes.bool.isRequired,
+    showTime: PropTypes.bool.isRequired,
 };
 
 DatePicker.defaultProps = {
     className: 'date-picker',
-    selectedDate: moment()
+    selectedDate: moment(),
+    disableTime: false,
+    showTime: true,
 };
 
 export default DatePicker;

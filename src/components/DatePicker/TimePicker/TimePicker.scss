@@ -1,0 +1,19 @@
+.g-time-picker {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    display: flex;
+    flex-basis: 50px;
+    justify-content: center;
+    outline: red, 1px solid;
+    margin: auto;
+
+    &__time {
+        width: 50%;
+        margin: 5px;
+        padding: 5px;
+        text-align: center;
+    }
+}

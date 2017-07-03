@@ -1,6 +1,8 @@
 .date-picker {
     width: 200px;
     outline: red solid 1px;
+    position: absolute;
+    background: #dddddd;
 }
 
 .date-picker__grid {
