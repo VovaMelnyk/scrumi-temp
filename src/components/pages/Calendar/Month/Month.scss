@@ -1,0 +1,28 @@
+.week-days {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.week-days__item {
+    width: 14.2%;
+    text-align: center;
+    height: 40px;
+    background: #ececec;
+    line-height: 2.5rem;
+}
+
+.container {
+    display: flex;
+    width: 30%;
+}
+
+.container p {
+    margin:0 0 0 15px;
+}
+
+.c-calendar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,163 @@
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &::-moz-placeholder {opacity: 1; @content}
+  &:-moz-placeholder {@content}
+  &:-ms-input-placeholder {@content}
+  &.placeholder {@content}
+}
+
+@mixin button-style {
+  border-radius: $border-rad-button;
+  color: white;
+  text-align: center;
+  text-shadow: $sh-button-font;
+  display: block;
+  line-height: rem(35);
+  font-size: rem(16);
+  box-sizing: border-box;
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin button-green {
+  @include button-style;
+  background: $grad-green;
+  border: $border-button-green;
+  box-shadow: $sh-button-green;
+  &:hover {
+    background: $grad-green-neg;
+  }
+  &:active {
+    box-shadow: inset 0 rem(1) rem(1) $gray-33;
+  }
+}
+
+@mixin button-red {
+  @include button-style;
+  background: $grad-red;
+  border: $border-button-red;
+  box-shadow: $sh-button-red;
+  &:hover {
+    background: $grad-red-neg;
+  }
+  &:active {
+    box-shadow: inset 0 rem(1) rem(1) $gray-33;
+  }
+}
+
+@mixin button-gray {
+  @include button-style;
+  background: $grad-gray;
+  border: $border-button-gray;
+  box-shadow: $sh-button-gray;
+  &:hover {
+    background: $grad-gray-neg;
+  }
+  &:active {
+    box-shadow: inset 0 rem(1) rem(1) $gray-33;
+  }
+}
+
+@mixin button-blue {
+  @include button-style;
+  background: $grad-blue;
+  border: $border-button-blue;
+  box-shadow: $sh-button-blue;
+  &:hover {
+    background: $grad-blue-neg;
+  }
+  &:active {
+    box-shadow: inset 0 rem(1) rem(1) $gray-33;
+  }
+}
+
+
+@mixin circle {
+  display: inline-block;
+  border-radius: 100%;
+  background-color: white;
+  text-align: center;
+  position: relative;
+  box-shadow: $sh-button-round;
+  &:before {
+    position: absolute;
+    display: block;
+    background-color: #e1e2e1;
+    border-radius: 100%;
+    content: '';
+  }
+}
+
+@mixin circle-l{
+  @include circle;
+  width: rem(50);
+  height: rem(50);
+  &:before {
+    width: rem(60);
+    height: rem(60);
+    left: rem(-10);
+    top: rem(-10);
+    z-index: -1;
+  }
+}
+
+@mixin circle-s{
+  @include circle;
+  width: rem(22);
+  height: rem(22);
+  &:before {
+    width: rem(28);
+    height: rem(28);
+    z-index: -1;
+  }
+}
+
+@mixin cross-l {
+  .cross{
+    display: block;
+    width: rem(20);
+    height: rem(2);
+    background-color: $gray-51;
+    position: absolute;
+    top: rem(24);
+    left: rem(15);
+    &:before {
+      display: block;
+      content: '';
+      width: rem(2);
+      height: rem(20);
+      position: absolute;
+      background-color: $gray-51;
+      top: rem(-9);
+      left: rem(9);
+      &:hover,
+      &:active {
+        background-color: white;
+      }
+    }
+  }
+}
+
+@mixin cross-s {
+  .cross{
+    display: block;
+    width: rem(12);
+    height: rem(2);
+    background-color: $gray-51;
+    position: absolute;
+    top: rem(10);
+    left: rem(5);
+    &:before {
+      display: block;
+      content: '';
+      width: rem(2);
+      height: rem(12);
+      position: absolute;
+      background-color: $gray-51;
+      top: rem(-5);
+      left: rem(5);
+    }
+  }
+}
+

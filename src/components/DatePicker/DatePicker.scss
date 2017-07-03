@@ -1,0 +1,36 @@
+.date-picker {
+    width: 200px;
+    outline: red solid 1px;
+}
+
+.date-picker__grid {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    //width: 200px;
+    margin: 0;
+    padding: 0;
+
+
+}
+
+.date-picker_week-days {
+    background: #00fcfe;
+}
+
+.date-picker__nav {
+    display: flex;
+    justify-content: space-around;
+}

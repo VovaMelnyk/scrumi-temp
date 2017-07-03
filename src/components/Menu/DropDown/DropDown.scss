@@ -1,0 +1,19 @@
+.dropdown {
+    position: relative;
+    font-family: Roboto;
+
+    &__list {
+        display: none;
+        position: absolute;
+        right: 0;
+        z-index: 100;
+        background-color: #fff;
+        border-radius: 3px;
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.5);
+    }
+
+
+    &__list--active {
+        display: block;
+    }
+}

@@ -1,0 +1,32 @@
+.menu-container {
+    display: inline-block;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 380px;
+    list-style: none;
+    &__item {
+        margin-right: 0.5rem;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &__link {
+        display: block;
+        padding: 0.5rem 1rem;
+        border: 1px solid #ccc;
+        font-size: 1.3rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        color: #333;
+        &:hover {
+            border-color: #333;
+            text-decoration: underline;
+        }
+    }
+}

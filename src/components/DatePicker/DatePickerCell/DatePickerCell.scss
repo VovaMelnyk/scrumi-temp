@@ -1,0 +1,18 @@
+.date-picker__cell {
+    display: flex;
+    flex-basis: calc(100% / 7);
+    justify-content: center;
+    align-items: center;
+}
+
+.date-picker_today {
+    background: #f0f;
+}
+
+.date-picker_other-month {
+    background: #c896ff;
+}
+
+.date-picker_selected-date {
+    background: #0f0;
+}
