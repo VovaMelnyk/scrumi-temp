@@ -8,6 +8,7 @@ import './Calendar.scss';
 import CalendarNav from './CalendarNav/CalendarNav';
 import Month from './Month/Month'
 import Sprint from './Sprint/Sprint'
+import ModalWindow from '../../ModalWindow/ModalWindow'
 
 
 
@@ -16,12 +17,14 @@ export default class Calendar extends React.Component {
         super();
         this.state = {
             visible: false,
-            fromDate: moment()
+            fromDate: moment(),
+            isOpenModal: true
         };
 
         this.handleClick = this.handleClick.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.switchMonth = this.switchMonth.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
     }
 
     handleClick() {
@@ -42,12 +45,19 @@ export default class Calendar extends React.Component {
         })
     }
 
+    toggleModal() {
+        this.setState({
+            isOpenModal: !this.state.isOpenModal
+        });
+    }
+
     render() {
         return (
             <div className='calendar'>
                 <CalendarNav
                 period = {this.state.fromDate}
                 onClick = {this.switchMonth}
+                onCloseModal={this.toggleModal}
                 />
                 {/*<span*/}
                     {/*id='date-field'*/}
@@ -60,6 +70,9 @@ export default class Calendar extends React.Component {
                 {/*}*/}
                 <Route exact path='/calendar' render={()=><Month period={this.state.fromDate}/>}/>
                 <Route  path='/calendar/sprint' component={Sprint} />
+                <ModalWindow showModal={this.state.isOpenModal}
+                             onCloseModal={this.toggleModal}>
+                </ModalWindow>
             </div>
         );
     }

@@ -26,9 +26,6 @@ export default class SwitchMonth extends React.Component {
                 <span className='current-month__right-arrow'
                       onClick={this.props.onClick.bind(null, 1)}>{String.fromCharCode(8594)}</span>
 
-                {/*<p onClick={this.props.onClick.bind(null, -1)}>Minus</p>*/}
-                {/*<p className='month'>{this.state.now.format('MMMM')}</p>*/}
-                {/*<p onClick={this.props.onClick.bind(null, 1)}>Plus</p>*/}
             </div>
         )
     }
