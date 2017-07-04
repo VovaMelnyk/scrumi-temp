@@ -8,6 +8,7 @@ import './EventWindow.scss';
 import DateTimeSpan from './../../../DateTimeSpan/DateTimeSpan';
 import TypeEvent from './../TypeEvent/TypeEvent';
 import Button from './../Button/Button';
+import ModalWindow from'./../../../ModalWindow/ModalWindow';
 
 class EventWindow extends React.Component {
     constructor(props) {
@@ -138,24 +139,26 @@ class EventWindow extends React.Component {
                         Сохранить
                     </button>
                 </div>,
-            content = <div className={this.props.className}>
-                        <input
-                            type="text"
-                            className={`${this.props.className}__event-title`}
-                            placeholder='Название события'
-                            defaultValue={this.props.event ? this.props.event.title : ''}
-                            ref={(input) => { this.eventTitle = input; }}
-                        />
-                        <button
-                            onClick={this.handleClickEventType}>
-                            {this.state.eventTypeVisible ? 'Тип события' : this.eventTypes[this.state.eventType]}
-                        </button>
-                {this.state.eventTypeVisible &&
-                <TypeEvent onClick={this.handleChangeEventType}/>}
-                        {dateBlock}
-                        {infoBlock}
-                        {buttonBlock}
-                    </div>;
+            content = <ModalWindow
+                            onCloseModal={this.props.handleHide}>
+                    <input
+                        type="text"
+                        className={`${this.props.className}__event-title`}
+                        placeholder='Название события'
+                        defaultValue={this.props.event ? this.props.event.title : ''}
+                        ref={(input) => { this.eventTitle = input; }}
+                    />
+                    {/*<button*/}
+                        {/*onClick={this.handleClickEventType}>*/}
+                        {/*{this.state.eventTypeVisible ? 'Тип события' : this.eventTypes[this.state.eventType]}*/}
+                    {/*</button>*/}
+                    {/*// {this.state.eventTypeVisible &&*/}
+                    // <TypeEvent onClick={this.handleChangeEventType}/>}
+                    //
+                    {/*{dateBlock}*/}
+                    {/*{infoBlock}*/}
+                    {/*{buttonBlock}*/}
+                </ModalWindow>
         return (
             content
         )
