@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './CreateEvent.scss';
 
@@ -25,7 +26,7 @@ export default class CreateEvent extends React.Component {
     render() {
         return(
             <div className='event'>
-                <Button className="c-button_create-event" text="Create Event"/>
+                <Button className="c-button_create-event" text="Create Event" onClick={this.props.onCloseModal}/>
                 <Button className='c-button__show-list' text='' onClick={this.handleClick}/>
                 {this.state.visible &&
                 <TypeEvent onClick={this.handleClick}/>
@@ -34,3 +35,8 @@ export default class CreateEvent extends React.Component {
         );
     }
 }
+
+
+CreateEvent.propTypes = {
+    onCloseModal: PropTypes.func.isRequired
+};
