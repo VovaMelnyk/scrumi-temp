@@ -13,10 +13,10 @@ const TypeEvent = (props) => {
     ];
     return(
         <ul className='c-type-list'>
-            {_.map(types,(type) => {
+            {_.map(types,(type, i) => {
                 return <li className={`c-type-list__item c-type-list__item--${type.key}`}
                            key={type.key}
-                           onClick={props.onClick}
+                           onClick={props.onClick.bind(null, i)}
                 >
                     {type.title}
                 </li>

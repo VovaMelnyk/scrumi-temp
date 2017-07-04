@@ -22,6 +22,7 @@ class EventWindow extends React.Component {
             assignType: this.props.event ? this.props.event.assignType : 0,
             startDate: this.props.event ? this.props.event.startDate : this.props.newEventDate,
             endDate: this.props.event ? this.props.event.endDate : this.props.newEventDate,
+            eventTypeVisible: false,
         };
 
         this.findAssignType = {
@@ -33,9 +34,13 @@ class EventWindow extends React.Component {
             '211' : 0,
         };
 
+        this.eventTypes = ['Событие', 'Стендап', 'Демо', 'Ретро'];
+
         this.handleSave = this.handleSave.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
         this.handleChangeAllDay = this.handleChangeAllDay.bind(this);
+        this.handleClickEventType = this.handleClickEventType.bind(this);
+        this.handleChangeEventType = this.handleChangeEventType.bind(this);
     }
 
     handleSave() {
@@ -65,6 +70,19 @@ class EventWindow extends React.Component {
         const newState = this.state;
         newState.assignType = e.target.checked ? 2 : 0;
         this.setState(newState);
+    }
+
+    handleClickEventType() {
+        this.setState({
+            eventTypeVisible: true,
+        })
+    }
+
+    handleChangeEventType(eventType) {
+        this.setState({
+            eventType: eventType,
+            eventTypeVisible: false,
+        });
     }
 
     render() {
@@ -128,7 +146,12 @@ class EventWindow extends React.Component {
                             defaultValue={this.props.event ? this.props.event.title : ''}
                             ref={(input) => { this.eventTitle = input; }}
                         />
-                        <span>тип события</span>
+                        <button
+                            onClick={this.handleClickEventType}>
+                            {this.state.eventTypeVisible ? 'Тип события' : this.eventTypes[this.state.eventType]}
+                        </button>
+                {this.state.eventTypeVisible &&
+                <TypeEvent onClick={this.handleChangeEventType}/>}
                         {dateBlock}
                         {infoBlock}
                         {buttonBlock}
