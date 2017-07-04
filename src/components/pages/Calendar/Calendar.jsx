@@ -81,7 +81,7 @@ export default class Calendar extends React.Component {
             <div>
                 <h1>Calendar is the best!!!</h1>
                 {/*<DateTimeSpan date={moment()}/>*/}
-                <div className='cell'>
+                <div className='c-event-block'>
                     <Event className='c-event' event={this.state.event}
                            handleClick={this.handleEventClick}/>
                     <Event className='c-event' event={this.state.event2}

@@ -1,6 +1,4 @@
-@import "var";
-@import "mixins";
-@import "theme";
+@import './../../../Theme/theme';
 
 .c-event-block{
     font-size: rem(12);
