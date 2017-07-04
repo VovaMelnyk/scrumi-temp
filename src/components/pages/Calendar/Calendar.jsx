@@ -18,7 +18,7 @@ export default class Calendar extends React.Component {
         this.state = {
             visible: false,
             fromDate: moment(),
-            isOpenModal: true
+            isOpenModal: false
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -45,7 +45,9 @@ export default class Calendar extends React.Component {
         })
     }
 
-    toggleModal() {
+    toggleModal(event) {
+        console.log(event.target);
+        event.stopPropagation();
         this.setState({
             isOpenModal: !this.state.isOpenModal
         });
@@ -71,7 +73,9 @@ export default class Calendar extends React.Component {
                 <Route exact path='/calendar' render={()=><Month period={this.state.fromDate}/>}/>
                 <Route  path='/calendar/sprint' component={Sprint} />
                 <ModalWindow showModal={this.state.isOpenModal}
-                             onCloseModal={this.toggleModal}>
+                             onCloseModal={this.toggleModal}
+                             className=''
+                >
                 </ModalWindow>
             </div>
         );

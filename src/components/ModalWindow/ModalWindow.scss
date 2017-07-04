@@ -17,12 +17,14 @@
     border-radius: 3px;
     display: flex;
     margin: auto;
-    flex-direction: column;
+    position: relative;
 
     &__close{
         cursor: pointer;
         height: rem(18);
-        align-self: flex-end;
+        position: absolute;
+        right:rem(5) ;
     }
 }
+
 
