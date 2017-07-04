@@ -1,0 +1,79 @@
+@import "var";
+@import "mixins";
+@import "theme";
+
+.c-event-block{
+    font-size: rem(12);
+    width: rem(155);
+    border: $border-button-gray;
+    border-radius: $border-rad-button;
+    box-shadow: rem(0) rem(3) rem(7) rem(0) rgba(0, 0, 0, 0.5);
+}
+.c-event {
+    border-bottom: rem(1) solid #e6e6e6; // відсутній колір
+}
+.c-event__time{
+    color: $fc-gray-white;
+    display: block;
+    margin-right: rem(10);
+    float: left;
+}
+.c-event__cell{
+    padding: rem(10);
+    margin: {
+        top: rem(2);
+        bottom: rem(2);
+    };
+    &:hover{
+        background: #ececec; // відсутній колір
+        cursor: pointer;
+    }
+}
+.c-add-event{
+    @extend .c-event__cell;
+    border-bottom: none;
+    text-align: center;
+    font-size: rem(16);
+    font-weight: bold;
+    &:hover{
+        background: none;
+    }
+}
+.c-add-event__style{
+    border: rem(3) solid #e6e6e6;
+    border-radius: rem(20);
+    padding: rem(3) rem(7);
+}
+.c-event--standup{
+    background: $green-light;
+    color: #fff;
+    .c-event__time{
+        color: #fff;
+    }
+    &:hover{
+        background: $green-light;
+    }
+}
+.c-event--demo{
+    background: $blue;
+    color: #fff;
+    .c-event__time{
+        color: #fff;
+    }
+    &:hover{
+        background: $blue;
+    }
+}
+.c-event--retro{
+    background: $red;
+    color: #fff;
+    .c-event__time{
+        color: #fff;
+    }
+    &:hover{
+        background: $red;
+    }
+}
+
+
+
