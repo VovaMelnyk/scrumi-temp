@@ -126,7 +126,7 @@ class EventWindow extends React.Component {
                     />
                 </div>,
             buttonBlock = <div className={`${this.props.className}__control-block`}>
-                    <Button className={`${this.props.className}__button`} text='Удалить' onClick=''/>
+                    <Button className={`${this.props.className}__button`} text='Удалить'/>
                     <button className={`${this.props.className}__button`}>Удалить</button>
                     <button
                         className={`${this.props.className}__button`}
@@ -148,16 +148,17 @@ class EventWindow extends React.Component {
                         defaultValue={this.props.event ? this.props.event.title : ''}
                         ref={(input) => { this.eventTitle = input; }}
                     />
-                    {/*<button*/}
-                        {/*onClick={this.handleClickEventType}>*/}
-                        {/*{this.state.eventTypeVisible ? 'Тип события' : this.eventTypes[this.state.eventType]}*/}
-                    {/*</button>*/}
-                    {/*// {this.state.eventTypeVisible &&*/}
-                    // <TypeEvent onClick={this.handleChangeEventType}/>}
-                    //
-                    {/*{dateBlock}*/}
-                    {/*{infoBlock}*/}
-                    {/*{buttonBlock}*/}
+                    <button
+                        className={`${this.props.className}__event-type`}
+                        onClick={this.handleClickEventType}>
+                        {this.state.eventTypeVisible ? 'Тип события' : this.eventTypes[this.state.eventType]}
+                    </button>
+                    {this.state.eventTypeVisible &&
+                        <TypeEvent onClick={this.handleChangeEventType}/>}
+
+                    {dateBlock}
+                    {infoBlock}
+                    {buttonBlock}
                 </ModalWindow>
         return (
             content

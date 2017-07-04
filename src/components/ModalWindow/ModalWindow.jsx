@@ -3,15 +3,11 @@ import  PropTypes from 'prop-types';
 import './ModalWindow.scss';
 
 export default class ModalWindow extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render(){
-        if(!this.props.showModal) {
-            return null;
-        }
-
         return(
             <div className='overlay'>
                 <div className='modal'>
@@ -25,6 +21,5 @@ export default class ModalWindow extends React.Component{
 
 ModalWindow.propTypes = {
     onCloseModal: PropTypes.func.isRequired,
-    showModal: PropTypes.bool,
     children: PropTypes.node
 };
