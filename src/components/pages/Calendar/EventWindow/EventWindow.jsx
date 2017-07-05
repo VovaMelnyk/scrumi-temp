@@ -34,7 +34,7 @@ class EventWindow extends React.Component {
             '211' : 0,
         };
 
-        this.eventTypes = ['Событие', 'Стендап', 'Демо', 'Ретро'];
+        this.eventTypes = ['Событие', 'Стендап', 'Демо', 'Ретро', 'Дедлайн'];
 
         this.handleSave = this.handleSave.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
@@ -162,7 +162,15 @@ class EventWindow extends React.Component {
                         {this.state.eventTypeVisible ? 'Тип события' : this.eventTypes[this.state.eventType]}
                     </button>
                     {this.state.eventTypeVisible &&
-                        <TypeEvent onClick={this.handleChangeEventType}/>}
+                        <TypeEvent
+                            types = {[
+                                {title:'Событие', key:'custom'},
+                                {title:'Стендап', key:'standup'},
+                                {title:'Демо', key:'demo'},
+                                {title:'Ретро', key:'retro'},
+                                {title:'Дедлайн', key:'deadline'}
+                            ]}
+                            onClick={this.handleChangeEventType}/>}
 
                     {dateBlock}
                     {infoBlock}

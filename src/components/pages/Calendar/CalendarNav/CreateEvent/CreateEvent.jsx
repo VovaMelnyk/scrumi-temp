@@ -19,6 +19,7 @@ export default class CreateEvent extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleSelectEventType = this.handleSelectEventType.bind(this);
         this.handleEventWindowHide = this.handleEventWindowHide.bind(this);
+        this.createEvent = this.createEvent.bind(this)
     }
 
     handleClick() {
@@ -36,6 +37,14 @@ export default class CreateEvent extends React.Component {
 
     }
 
+    createEvent() {
+        this.setState({
+            eventType: 0,
+            eventWindowVisible: true,
+        });
+
+    }
+
     handleEventWindowHide() {
         this.setState({
             eventWindowVisible: false,
@@ -46,10 +55,17 @@ export default class CreateEvent extends React.Component {
     render() {
         return(
             <div className='event'>
-                <Button className="c-button_create-event" text="Create Event" onClick={this.handleClick}/>
-                <Button className='c-button__show-list' text='' onClick={this.handleClick}/>
+                <Button className="button-green" text="Создать событие" onClick={this.createEvent}/>
+                <Button className='button-green button-green--caret' text={String.fromCharCode(9660)} onClick={this.handleClick}/>
                 {this.state.visible &&
-                <TypeEvent onClick={this.handleSelectEventType}/>
+                <TypeEvent
+                    types = {[
+                    {title:'Событие', key:'custom'},
+                    {title:'Стендап', key:'standup'},
+                    {title:'Демо', key:'demo'},
+                    {title:'Ретро', key:'retro'}
+                    ]}
+                    onClick={this.handleSelectEventType}/>
                 }
                 {this.state.eventWindowVisible &&
                     <EventWindow

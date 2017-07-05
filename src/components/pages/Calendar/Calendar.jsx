@@ -127,9 +127,9 @@ export default class Calendar extends React.Component {
                 <Route exact path='/calendar' render={()=><Month period={this.state.fromDate}/>}/>
                 <Route  path='/calendar/sprint' component={Sprint} />
                 {this.state.isOpenModal &&
-                    <ModalWindow showModal={this.state.isOpenModal}
-                             onCloseModal={this.toggleModal}
-                             className=''>
+                    <ModalWindow
+                        onCloseModal={this.toggleModal}
+                        className=''>
                     </ModalWindow>}
                 {this.state.editEventWindow &&
                     this.createOrEditEventWindow(this.state.newEvent)

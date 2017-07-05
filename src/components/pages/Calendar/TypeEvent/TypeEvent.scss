@@ -8,7 +8,7 @@
     box-shadow: 0 rem(2) rem(5) 0 #a9a9a9;
     list-style: none;
     position: absolute;
-    top: rem(20);
+    top: rem(40);
     &__item {
         position: relative;
         padding: rem(7) rem(10);
@@ -34,5 +34,8 @@
     }
     &__item--retro::after {
         background-color: $red;
+    }
+    &__item--deadline::after {
+        background-color: $yellow;
     }
 }

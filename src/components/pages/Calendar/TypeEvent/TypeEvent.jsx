@@ -5,20 +5,15 @@ import _ from 'lodash';
 import './TypeEvent.scss';
 
 const TypeEvent = (props) => {
-    let types = [
-        {title:'Событие', key:'custom'},
-        {title:'Стендап', key:'standup'},
-        {title:'Демо', key:'demo'},
-        {title:'Ретро', key:'retro'}
-    ];
+
     return(
         <ul className='c-type-list'>
-            {_.map(types,(type, i) => {
-                return <li className={`c-type-list__item c-type-list__item--${type.key}`}
-                           key={type.key}
+            {_.map(props.types,(type, i) => {
+                return <li className={`c-type-list__item c-type-list__item--${props.types[i].key}`}
+                           key={props.types[i].key}
                            onClick={props.onClick.bind(null, i)}
                 >
-                    {type.title}
+                    {props.types[i].title}
                 </li>
             })}
         </ul>
@@ -27,7 +22,13 @@ const TypeEvent = (props) => {
 
 TypeEvent.propTypes = {
     onClick: PropTypes.func.isRequired,
+    types: PropTypes.arrayOf(PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        key: PropTypes.string.isRequired,
+    })),
 };
+
+
 
 export default TypeEvent;
 
