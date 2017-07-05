@@ -28,6 +28,7 @@ export default class CreateEvent extends React.Component {
     }
 
     handleSelectEventType(eventType) {
+        console.log('handleSelectEventType');
         this.setState({
             visible: !this.state.visible,
             eventType: eventType ? eventType : 0,
@@ -38,6 +39,7 @@ export default class CreateEvent extends React.Component {
     }
 
     handleEventWindowHide() {
+        console.log('click outside');
         this.setState({
             eventWindowVisible: false,
         })
@@ -47,7 +49,7 @@ export default class CreateEvent extends React.Component {
     render() {
         return(
             <div className='event'>
-                <Button className="c-button_create-event" text="Create Event" onClick={this.props.onCloseModal}/>
+                <Button className="c-button_create-event" text="Create Event" onClick={this.handleClick}/>
                 <Button className='c-button__show-list' text='' onClick={this.handleClick}/>
                 {this.state.visible &&
                 <TypeEvent onClick={this.handleSelectEventType}/>
