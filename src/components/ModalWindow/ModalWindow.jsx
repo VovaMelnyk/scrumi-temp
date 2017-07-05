@@ -8,9 +8,13 @@ export default class ModalWindow extends React.Component{
     }
 
     render(){
+        if(!this.props.showModal) {
+            return null;
+        }
+
         return(
-            <div className='overlay'>
-                <div className='modal'>
+            <div className='overlay' onClick={this.props.onCloseModal}>
+                <div className={`modal ${this.props.className}`}>
                     <span className='modal__close' onClick={this.props.onCloseModal}>{String.fromCharCode(10006)}</span>
                     {this.props.children}
                 </div>
@@ -21,5 +25,7 @@ export default class ModalWindow extends React.Component{
 
 ModalWindow.propTypes = {
     onCloseModal: PropTypes.func.isRequired,
-    children: PropTypes.node
+    showModal: PropTypes.bool.isRequired,
+    children: PropTypes.node,
+    className: PropTypes.string.isRequired
 };

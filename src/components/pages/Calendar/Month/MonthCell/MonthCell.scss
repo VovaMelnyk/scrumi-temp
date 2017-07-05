@@ -1,17 +1,33 @@
+@import'../../../../Theme/theme';
+
 .c-date__cell {
     width: 14%;
     height: 140px;
-    background: #fafafa;
     margin: 2px 0;
+    background: #fafafa;
+    box-shadow: 0 rem(1) rem(1) 0 #a9a9a9;
+
+    .date {
+        display: inline-block;
+        margin: rem(8)rem(10);
+        font-size: rem(26);
+    }
 }
  .today {
-     background: #95d5e1;
+     background: radial-gradient(circle, #95d5e1, #74a5af);
+     color: #fff;
+ }
+
+ .today::after {
+     content: 'today';
+     margin-left: rem(-7);
+     font-size: rem(14);
  }
 
  .other-month{
-     background: #e6e6e6;
+     background-color: #e6e6e6;
  }
 
  .c-calendar {
-     background: #f6f6f7;
+     background-color: #f6f6f7;
  }
