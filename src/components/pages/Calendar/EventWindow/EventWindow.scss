@@ -5,17 +5,13 @@
         border: none;
     }
 
-    position: absolute;
     overflow: hidden;
-    left: 150px;
-    top: 150px;
-    outline: solid red 3px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
-    width: 30rem;
-    height: 20rem;
+    //width: 30rem;
+    //height: 20rem;
     background: #ccc;
 
     &__event-title {

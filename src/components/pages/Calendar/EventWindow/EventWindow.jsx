@@ -140,7 +140,9 @@ class EventWindow extends React.Component {
                     </button>
                 </div>,
             content = <ModalWindow
-                            onCloseModal={this.props.handleHide}>
+                            onCloseModal={this.props.handleHide}
+                            showModal={true}
+                            className='c-event-window'>
                     <input
                         type="text"
                         className={`${this.props.className}__event-title`}
