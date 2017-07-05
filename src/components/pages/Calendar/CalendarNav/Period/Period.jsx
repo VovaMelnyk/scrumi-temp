@@ -1,12 +1,13 @@
 import  React from 'react';
 import {NavLink} from 'react-router-dom';
+import onClickOutside from 'react-onclickoutside'
 
 
 import './Period.scss'
-import Button from '../../Button/Button';
 
 
-export default class Period extends React.Component {
+
+class Period extends React.Component {
     constructor(){
         super();
         this.state = {
@@ -16,11 +17,12 @@ export default class Period extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.changeToMonth = this.changeToMonth.bind(this);
         this.changeToSprint = this.changeToSprint.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
     handleClick() {
         this.setState({
-            visible: !this.state.visible
+            visible: true
         })
     }
 
@@ -38,12 +40,19 @@ export default class Period extends React.Component {
         });
     }
 
+    handleClickOutside(evt){
+        this.setState({
+            visible: false,
+        });
+    }
+
+
      render(){
          return (
              <div className='period'>
                  <span className='period__text'>Отобразить:</span>
                  <span className='period__choose' onClick={this.handleClick}>{this.state.period}</span>
-                 <span className="period__symbol" onClick={this.handleClick}></span>
+                 <div className="period__symbol" onClick={this.handleClick}></div>
 
                  {this.state.visible&&
                  <ul className='period__menu'>
@@ -61,3 +70,4 @@ export default class Period extends React.Component {
     }
 }
 
+export default onClickOutside(Period)

@@ -42,6 +42,7 @@ class EventWindow extends React.Component {
         this.handleClickEventType = this.handleClickEventType.bind(this);
         this.handleChangeEventType = this.handleChangeEventType.bind(this);
         this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
+        this.handleCloseList = this.handleCloseList.bind(this);
     }
 
     handleSave() {
@@ -90,6 +91,12 @@ class EventWindow extends React.Component {
 
     handleDeleteEvent() {
         console.log('delete event');
+    }
+
+    handleCloseList() {
+        this.setState({
+            eventTypeVisible: false,
+        });
     }
 
     render() {
@@ -170,6 +177,7 @@ class EventWindow extends React.Component {
                                 {title:'Ретро', key:'retro'},
                                 {title:'Дедлайн', key:'deadline'}
                             ]}
+                            handleClick={this.handleCloseList}
                             onClick={this.handleChangeEventType}/>}
 
                     {dateBlock}

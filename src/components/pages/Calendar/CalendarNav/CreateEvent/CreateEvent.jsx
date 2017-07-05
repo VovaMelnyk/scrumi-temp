@@ -65,6 +65,7 @@ export default class CreateEvent extends React.Component {
                     {title:'Демо', key:'demo'},
                     {title:'Ретро', key:'retro'}
                     ]}
+                    handleClick={this.handleClick}
                     onClick={this.handleSelectEventType}/>
                 }
                 {this.state.eventWindowVisible &&

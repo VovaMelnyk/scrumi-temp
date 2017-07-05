@@ -1,24 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import onClickOutside from 'react-onclickoutside'
 
 import './TypeEvent.scss';
 
-const TypeEvent = (props) => {
+class TypeEvent extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            visible: true,
+        };
 
-    return(
-        <ul className='c-type-list'>
-            {_.map(props.types,(type, i) => {
-                return <li className={`c-type-list__item c-type-list__item--${props.types[i].key}`}
-                           key={props.types[i].key}
-                           onClick={props.onClick.bind(null, i)}
-                >
-                    {props.types[i].title}
-                </li>
-            })}
-        </ul>
-    )
-};
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+    }
+
+    handleClickOutside(evt){
+        this.props.handleClick()
+    }
+
+    render() {
+        return (
+            <ul className='c-type-list'>
+                {_.map(this.props.types, (type, i) => {
+                    return <li className={`c-type-list__item c-type-list__item--${this.props.types[i].key}`}
+                               key={this.props.types[i].key}
+                               onClick={this.props.onClick.bind(null, i)}
+                    >
+                        {this.props.types[i].title}
+                    </li>
+                })}
+            </ul>
+        )
+    }
+}
 
 TypeEvent.propTypes = {
     onClick: PropTypes.func.isRequired,
@@ -26,9 +41,7 @@ TypeEvent.propTypes = {
         title: PropTypes.string.isRequired,
         key: PropTypes.string.isRequired,
     })),
+    handleClick: PropTypes.func.isRequired
 };
 
-
-
-export default TypeEvent;
-
+export default onClickOutside(TypeEvent)

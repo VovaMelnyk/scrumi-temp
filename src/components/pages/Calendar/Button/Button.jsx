@@ -17,9 +17,4 @@ Button.propTypes = {
     onClick: PropTypes.func.isRequired,
 };
 
-Button.defaultProps = {
-    className: 'g-button',
-    text: 'Create Event',
-};
-
 export default Button;

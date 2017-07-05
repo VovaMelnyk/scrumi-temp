@@ -72,9 +72,7 @@ export default class Calendar extends React.Component {
         })
     }
 
-    toggleModal(event) {
-        console.log(event.target);
-        event.stopPropagation();
+    toggleModal() {
         this.setState({
             isOpenModal: !this.state.isOpenModal
         });
