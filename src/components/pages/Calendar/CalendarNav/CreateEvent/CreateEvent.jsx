@@ -28,18 +28,15 @@ export default class CreateEvent extends React.Component {
     }
 
     handleSelectEventType(eventType) {
-        console.log('handleSelectEventType');
         this.setState({
             visible: !this.state.visible,
             eventType: eventType ? eventType : 0,
             eventWindowVisible: true,
         });
-        console.log('event Type', eventType);
 
     }
 
     handleEventWindowHide() {
-        console.log('click outside');
         this.setState({
             eventWindowVisible: false,
         })

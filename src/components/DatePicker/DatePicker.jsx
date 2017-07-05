@@ -10,6 +10,11 @@ import onClickOutside from 'react-onclickoutside';
 
 import './DatePicker.scss';
 
+/**
+ * Creates calendar cells with the days of week
+ * @param props
+ * @returns {ReactElement} Line with the days of week (Su, Mo, Tu, We, Th, Fr, St)
+ */
 function DaysOfWeek(props) {
     let days = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
     return (
@@ -31,7 +36,10 @@ DaysOfWeek.propTypes = {
 class DatePicker extends React.Component {
     constructor(props) {
         super(props);
-
+        /**
+         *
+         * @type {{visible: boolean, showTime: Boolean, selectedDate, shownMonth: string}}
+         */
         this.state = {
             visible: true,
             showTime: this.props.showTime,
@@ -41,37 +49,12 @@ class DatePicker extends React.Component {
         moment.locale('ru');
         this.changeMonth = this.changeMonth.bind(this);
         this.selectDate = this.selectDate.bind(this);
-        // this.handleClick = this.handleClick.bind(this);
-        // this.stopPropagation = this.stopPropagation.bind(this);
         this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
     handleClickOutside (evt) {
-        console.log('handleClickOutside');
         this.props.handleClickOutside();
     }
-
-    // componentDidMount() {
-    //     window.addEventListener('click', this.handleClick, false);
-    // }
-    //
-    // componentWillUnmount() {
-    //     window.removeEventListener('click', this.handleClick, false);
-    // }
-    //
-    // stopPropagation(e) {
-    //     e.stopPropagation();
-    // }
-
-    // handleClick(e) {
-    //     if (this.state.visible) {
-    //         this.setState({
-    //             visible: false
-    //         });
-    //         return
-    //     }
-    //     this.props.handleClickOutside();
-    // }
 
     createDateArray(month = moment().format('MM.YYYY')) {
         let dateArr = [],

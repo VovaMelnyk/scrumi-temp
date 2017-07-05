@@ -28,8 +28,7 @@ class DateTimeSpan extends React.Component {
         this.handleTimeChange = this.handleTimeChange.bind(this);
     }
 
-    componentWillReceiveProps(nextProps, nextState) {
-        console.log('receive props');
+    componentWillReceiveProps(nextProps) {
         this.setState({
             showTime: nextProps.showTime,
             disableTime: nextProps.disableTime,

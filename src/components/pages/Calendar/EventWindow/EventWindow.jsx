@@ -15,7 +15,6 @@ class EventWindow extends React.Component {
         super(props);
 
         moment.locale('ru');
-        console.log('this.props', this.props);
         this.state = {
             isModified: false,
             event: this.props.event ? this.props.event : {},
@@ -42,6 +41,7 @@ class EventWindow extends React.Component {
         this.handleChangeAllDay = this.handleChangeAllDay.bind(this);
         this.handleClickEventType = this.handleClickEventType.bind(this);
         this.handleChangeEventType = this.handleChangeEventType.bind(this);
+        this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
     }
 
     handleSave() {
@@ -88,6 +88,10 @@ class EventWindow extends React.Component {
         });
     }
 
+    handleDeleteEvent() {
+        console.log('delete event');
+    }
+
     render() {
         let dateBlock = <div className={`${this.props.className}__date-block`}>
                     <span className={`${this.props.className}__span-title`}>Дата начала:</span>
@@ -128,7 +132,7 @@ class EventWindow extends React.Component {
                     />
                 </div>,
             buttonBlock = <div className={`${this.props.className}__control-block`}>
-                    <Button className={`${this.props.className}__button`} text='Удалить'/>
+                    <Button className={`${this.props.className}__button`} text='Удалить' onClick={this.handleDeleteEvent}/>
                     <button className={`${this.props.className}__button`}>Удалить</button>
                     <button
                         className={`${this.props.className}__button`}
