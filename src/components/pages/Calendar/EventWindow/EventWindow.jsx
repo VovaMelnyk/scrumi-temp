@@ -52,7 +52,9 @@ class EventWindow extends React.Component {
         newEvent.description = this.eventDescription.value;
         newEvent.location = this.eventLocation.value;
         newEvent.assignType = this.state.assignType;
+        newEvent.eventType = this.state.eventType;
         console.log('new event = ', newEvent);
+        this.props.handleHide();
     }
 
     handleChangeDate(dateNum, newDate, showTime) {
@@ -188,15 +190,6 @@ EventWindow.defaultProps = {
     className: 'c-event-window',
     newEventType: 0,
     newEventDate: moment(),
-    // event: {
-    //     title: '',
-    //     eventType: 0,
-    //     assignType: 0,
-    //     startDate: moment(),
-    //     endDate: moment(),
-    //     description: '',
-    //     location: ''
-    // }
 };
 
 export default EventWindow;

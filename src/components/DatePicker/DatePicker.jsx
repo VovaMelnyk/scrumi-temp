@@ -6,6 +6,7 @@ import TimePicker from './TimePicker/TimePicker';
 import moment from 'moment';
 import _ from 'lodash';
 import uuid from 'uuid';
+import onClickOutside from 'react-onclickoutside';
 
 import './DatePicker.scss';
 
@@ -40,31 +41,37 @@ class DatePicker extends React.Component {
         moment.locale('ru');
         this.changeMonth = this.changeMonth.bind(this);
         this.selectDate = this.selectDate.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.stopPropagation = this.stopPropagation.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
+        // this.stopPropagation = this.stopPropagation.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
-    componentDidMount() {
-        window.addEventListener('click', this.handleClick, false);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('click', this.handleClick, false);
-    }
-
-    stopPropagation(e) {
-        e.stopPropagation();
-    }
-
-    handleClick(e) {
-        if (this.state.visible) {
-            this.setState({
-                visible: false
-            });
-            return
-        }
+    handleClickOutside (evt) {
+        console.log('handleClickOutside');
         this.props.handleClickOutside();
     }
+
+    // componentDidMount() {
+    //     window.addEventListener('click', this.handleClick, false);
+    // }
+    //
+    // componentWillUnmount() {
+    //     window.removeEventListener('click', this.handleClick, false);
+    // }
+    //
+    // stopPropagation(e) {
+    //     e.stopPropagation();
+    // }
+
+    // handleClick(e) {
+    //     if (this.state.visible) {
+    //         this.setState({
+    //             visible: false
+    //         });
+    //         return
+    //     }
+    //     this.props.handleClickOutside();
+    // }
 
     createDateArray(month = moment().format('MM.YYYY')) {
         let dateArr = [],
@@ -116,11 +123,7 @@ class DatePicker extends React.Component {
             />
         });
         return (
-            <div className={this.props.className}
-                 tabIndex='0'
-                 autoFocus=''
-                 onClick={this.stopPropagation}
-            >
+            <div className={this.props.className}>
                 <div className={`${this.props.className}__nav`}>
                     <span
                         className={`${this.props.className}__prev`}
@@ -164,4 +167,4 @@ DatePicker.defaultProps = {
     showTime: true,
 };
 
-export default DatePicker;
+export default onClickOutside(DatePicker);

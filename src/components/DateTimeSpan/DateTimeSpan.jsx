@@ -23,11 +23,13 @@ class DateTimeSpan extends React.Component {
 
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleHide = this.handleHide.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
     }
 
     componentWillReceiveProps(nextProps, nextState) {
+        console.log('receive props');
         this.setState({
             showTime: nextProps.showTime,
             disableTime: nextProps.disableTime,
@@ -41,15 +43,19 @@ class DateTimeSpan extends React.Component {
     }
 
     handleClick() {
-        const state = this.state.visible;
         this.setState(
             {
-                visible: !this.state.visible
+                visible: true,
             }
         );
-        if (state) {
-            this.props.handleChange(this.state.date, this.state.showTime);
-        }
+    }
+
+    handleHide() {
+        this.setState({
+            visible: false,
+        });
+
+        this.props.handleChange(this.state.date, this.state.showTime);
     }
 
     handleSelect(newDate) {
@@ -83,7 +89,7 @@ class DateTimeSpan extends React.Component {
                 {this.state.date.format(format)}
                 {this.state.visible &&
                 <DatePicker selectedDate={moment(this.state.date)}
-                            handleClickOutside={this.handleClick}
+                            handleClickOutside={this.handleHide}
                             handleSelect={this.handleSelect}
                             handleTimeChange={this.handleTimeChange}
                             disableTime={this.state.disableTime}

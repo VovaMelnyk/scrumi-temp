@@ -2,7 +2,7 @@ import  React from 'react';
 import  PropTypes from 'prop-types';
 import './ModalWindow.scss';
 
-export default class ModalWindow extends React.Component{
+class ModalWindow extends React.Component{
     constructor(props) {
         super(props);
 
@@ -11,36 +11,18 @@ export default class ModalWindow extends React.Component{
         };
 
         this.stopPropagation = this.stopPropagation.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    componentDidMount() {
-        window.addEventListener('click', this.handleClick, false);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('click', this.handleClick, false);
     }
 
     stopPropagation(e) {
         e.stopPropagation();
     }
 
-    handleClick(e) {
-        if (this.state.visible) {
-            this.setState({
-                visible: false
-            });
-            return
-        }
-        this.props.onCloseModal();
-    }
-
     render(){
         return(
-            <div className='overlay'>
+            <div className='overlay'
+            onClick={this.props.onCloseModal}>
                 <div className={`modal ${this.props.className}`}
-                     onClick={this.stopPropagation}>
+                onClick={this.stopPropagation}>
                     <span className='modal__close' onClick={this.props.onCloseModal}>{String.fromCharCode(10006)}</span>
                     {this.props.children}
                 </div>
@@ -54,3 +36,5 @@ ModalWindow.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string.isRequired
 };
+
+export default ModalWindow;
