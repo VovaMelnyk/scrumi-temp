@@ -4,9 +4,9 @@
     display: flex;
     align-self: center;
     position: relative;
-    margin: rem(20) rem(45) rem(15) 0;
 
     .button-green{
+      padding: 0 rem(10);
       border-radius: .25rem 0 0 .25rem;
       border-right: none;
   }

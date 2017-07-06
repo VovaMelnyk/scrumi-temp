@@ -35,6 +35,7 @@ export default class Calendar extends React.Component {
             isOpenModal: false,
             editEventWindow: false,
             newEvent: true,
+            newEventType: 0,
             eventIdCounter: 2,
             events : [
                 {
@@ -117,6 +118,7 @@ export default class Calendar extends React.Component {
     handleNewEvent(eventType) {
         this.setState({
             newEvent: true,
+            newEventType: eventType,
             editEventWindow: true,
         })
     }
@@ -156,8 +158,8 @@ export default class Calendar extends React.Component {
         return newEvent ?
             <EventWindow
                 className='c-event-window'
-                newEventDate={moment().add(1, 'days')}
-                newEventType={0}
+                newEventDate={moment().minute() < 30 ? moment().startOf('hour').add(30, 'm') : moment().add(30, 'm').startOf('hour')}
+                newEventType={this.state.newEventType}
                 handleHide={this.handleHide}
                 handleSaveEvent={this.handleSaveEvent}
                 handleDeleteEvent={this.handleDeleteEvent}/> :
@@ -177,6 +179,7 @@ export default class Calendar extends React.Component {
                 onClick = {this.switchMonth}
                 onCloseModal={this.toggleModal}
                 handleSaveEvent={this.handleSaveEvent}
+                handleCreateEvent={this.handleNewEvent}
                 />
 
                 <Route exact path='/calendar' render={()=>

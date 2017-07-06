@@ -1,6 +1,6 @@
 @import "../../../Theme/theme";
 .c-type-list {
-    width: rem(146);
+    width: rem(182);
     -webkit-padding-start: 0;
     font-size: rem(14);
     background-color: #fff;
@@ -8,7 +8,7 @@
     box-shadow: 0 rem(2) rem(5) 0 #a9a9a9;
     list-style: none;
     position: absolute;
-    top: rem(40);
+    top: rem(38);
     &__item {
         position: relative;
         padding: rem(7) rem(10);
@@ -21,7 +21,7 @@
         content: '';
         position: absolute;
         top: rem(10);
-        left: rem(125);
+        left: rem(160);
         width: rem(11);
         height: rem(11);
         background-color: #ececec;
