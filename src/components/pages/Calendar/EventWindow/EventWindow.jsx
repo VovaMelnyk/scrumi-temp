@@ -92,7 +92,9 @@ class EventWindow extends React.Component {
     }
 
     handleDeleteEvent() {
-        console.log('delete event');
+        console.log('delete event with id', this.state.event.id);
+        this.props.handleDeleteEvent(this.state.event.id);
+        this.props.handleHide();
     }
 
     handleCloseList() {
@@ -141,8 +143,12 @@ class EventWindow extends React.Component {
                     />
                 </div>,
             buttonBlock = <div className={`${this.props.className}__control-block`}>
-                    <Button className={`${this.props.className}__button`} text='Удалить' onClick={this.handleDeleteEvent}/>
-                    <button className={`${this.props.className}__button`}>Удалить</button>
+                    {this.state.event.id &&
+                        <Button
+                            className={`${this.props.className}__button`}
+                            text='Удалить'
+                            onClick={this.handleDeleteEvent}
+                        />}
                     <button
                         className={`${this.props.className}__button`}
                         onClick={this.props.handleHide}>
@@ -207,6 +213,7 @@ EventWindow.propTypes = {
     }),
     handleHide: PropTypes.func.isRequired,
     handleSaveEvent: PropTypes.func.isRequired,
+    handleDeleteEvent: PropTypes.func.isRequired,
 };
 
 EventWindow.defaultProps = {
