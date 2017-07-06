@@ -1,3 +1,9 @@
+@import'../../Theme/theme';
+
+.calendar {
+    margin: 0 rem(10);
+}
+
 .cell {
     overflow: hidden;
     outline: solid 1px green;

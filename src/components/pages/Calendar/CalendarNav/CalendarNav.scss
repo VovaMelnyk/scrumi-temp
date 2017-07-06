@@ -1,4 +1,8 @@
+@import './../../../Theme/theme';
+
 .c-nav {
   display: flex;
   justify-content: space-between;
+  margin: rem(5) 0;
 }
+
