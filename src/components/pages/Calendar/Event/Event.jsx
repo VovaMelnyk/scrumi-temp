@@ -25,6 +25,11 @@ class Event extends React.Component {
             <div
                 className={this.props.className + (this.props.event.eventType ? ` ${this.props.className}--${this.classNames[this.props.event.eventType - 1]}` : '')}
                 onClick={this.handleClick}>
+                <div className="c-type--event">
+                    <span className="c-event--standup">Стендап</span>
+                    <span className="c-event--retro">Ретро</span>
+                    <span className="c-event--demo">Демо</span>
+                </div>
                 {this.props.event.assignType!==2 &&
                     <span className={`${this.props.className}__time`}>{this.props.event.startDate.format('kk:mm')}</span>}
                 <span className={`${this.props.className}__cell`}>{this.props.event.title}</span>
