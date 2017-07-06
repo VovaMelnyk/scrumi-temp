@@ -22,13 +22,13 @@ export default class ConfirmWindow extends React.Component {
                 onCloseModal={this.props.onCloseModal}
             >
                 <p className='question__text'>{this.props.text}</p>
-                <Button text='Да'
-                    className='button-green'
-                    onClick={this.props.yes}
-                />
                 <Button text='Нет'
                     className='button-red'
                     onClick={this.props.no}
+                />
+                <Button text='Да'
+                        className='button-green'
+                        onClick={this.props.yes}
                 />
             </ModalWindow>
     );

@@ -47,7 +47,6 @@ class EventWindow extends React.Component {
         this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
         this.handleCloseList = this.handleCloseList.bind(this);
         this.showQuestion = this.showQuestion.bind(this);
-        this.modal = this.modal.bind(this)
 
     }
 
@@ -116,13 +115,6 @@ class EventWindow extends React.Component {
         });
     }
 
-    modal(e) {
-        if (e.target.innerHTML.toLowerCase() === 'сохранить') {
-            console.log('save')
-        } else if (e.target.innerHTML.toLowerCase() === 'удалить') {
-            console.log('delete')
-        }
-    }
 
 
     render() {
@@ -169,7 +161,7 @@ class EventWindow extends React.Component {
                         <Button
                             className={`${this.props.className}__button`}
                             text='Удалить'
-                            onClick={this.handleDeleteEvent}
+                            onClick={this.showQuestion}
                         />}
                     <button
                         className={`${this.props.className}__button`}
@@ -216,7 +208,8 @@ class EventWindow extends React.Component {
                 {this.state.questionVisible &&
                 <QuestionWindow
                     no={this.showQuestion}
-                    yes={this.handleSave}
+                    yes= {this.state.text  === 'сохранить'? this.handleSave : this.handleDeleteEvent}
+
                     onCloseModal={this.showQuestion}
                     text={`Вы желаете ${this.state.text} событие?`}
                 />
