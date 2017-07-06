@@ -30,14 +30,42 @@ export default class Month extends React.Component {
         super(props);
         this.state = {
             now: this.props.period,
+            showEventList: this.createEventListMatrix(this.props.period),
         };
         this.switchMonth = this.switchMonth.bind(this);
+        this.handleCellClick = this.handleCellClick.bind(this);
+        this.createEventListMatrix = this.createEventListMatrix.bind(this);
+    }
+
+    createEventListMatrix(date) {
+        let eventListMatrix = new Map;
+        let startDate = moment(date),
+            endDate = moment(date);
+        startDate = startDate.startOf('month').subtract(startDate.startOf('month').day()-1, 'days');
+        endDate = endDate.endOf('month').add(7 - endDate.endOf('month').days(), 'days');
+        const diff = Math.round(moment.duration(endDate-startDate).asDays());
+        console.log('startDate', startDate);
+        console.log('endDate', endDate);
+        let cellDate = startDate;
+        _.times(diff, function() {
+            eventListMatrix.set(moment(cellDate).format('DD.MM.YYYY'), false);
+            cellDate.add(1, 'd');
+        });
+
+        console.log('eventListMatrix', eventListMatrix);
+        return eventListMatrix
+
     }
 
     switchMonth(period) {
+        let newDate = this.state.now.add(period,'month');
+
         this.setState ({
-            now: this.state.now.add(period,'month')
-        })
+            now: newDate,
+            showEventList: createEventListMatrix(newDate),
+        });
+
+
     }
 
     dateAdd (month) {
@@ -58,30 +86,50 @@ export default class Month extends React.Component {
         return collection
     };
 
+    handleCellClick(cellDate) {
+        console.log('click');
+        // let eventListMatrix = this.createEventListMatrix(cellDate);
+        // eventListMatrix.set(cellDate.format('DD.MM.YYYY'), true);
+        // this.setState({
+        //     showEventList: eventListMatrix,
+        // })
+    }
+
 
     render() {
-        // const events = this.props.events.has(cell.format('DD.MM.YYYY')) ?
-        //     _.forEach(this.props.events.get(cell.format('DD.MM.YYYY')), function(event) {
-        //         return <Event
-        //             className="c-event"
-        //             event={event}
-        //             handleClick={function() {console.log('click on Event')}}
-        //         />
-        //     }) : null;
         let grid = _.map(this.dateAdd(this.state.now),(cell) => {
             return <MonthCell
                 month={this.state.now}
                 key={uuid()}
-                cellDate={cell}>
+                cellDate={cell}
+                handleClick={this.handleCellClick}>
                 {this.props.events.has(cell.format('DD.MM.YYYY')) &&
                     _.map(this.props.events.get(cell.format('DD.MM.YYYY')), event => {
                         return <Event
-                            uuid={uuid()}
+                            key={uuid()}
                             className="c-event"
                             event={event}
                             handleClick={this.props.handleEventClick.bind(null, event)}
                         />
                     })}
+                {this.state.showEventList.get(cell.format('DD.MM.YYYY')) &&
+                    <MonthCell
+                        month={this.state.now}
+                        key={uuid()}
+                        cellDate={cell}
+                        className='c-date--event-list'
+                        handleClick={this.handleCellClick}>
+                        {this.props.events.has(cell.format('DD.MM.YYYY')) &&
+                        _.map(this.props.events.get(cell.format('DD.MM.YYYY')), event => {
+                            return <Event
+                                key={uuid()}
+                                className="c-event"
+                                event={event}
+                                handleClick={this.props.handleEventClick.bind(null, event)}
+                            />
+                        })}
+
+                    </MonthCell>}
             </MonthCell>
         });
 

@@ -23,12 +23,13 @@ export default class MonthCell extends React.Component {
     }
 
     render() {
-        let className = 'c-date__cell';
+        let className = 'c-date__cell' + (this.props.className ? ` ${this.props.className}` : '');
         className += this.props.cellDate.isSame(moment(), 'day') ? ` today` : '';
         className += this.props.cellDate.isSame(moment(this.props.month), 'month') ? `` : ' other-month';
         return(
             <div
                 className={className}
+                onClick={this.props.handleClick.bind(null, this.props.cellDate)}
             >
                 <span className="date">
                     {this.props.cellDate.format('DD')}
@@ -41,5 +42,7 @@ export default class MonthCell extends React.Component {
 
 MonthCell.propTypes = {
     cellDate: PropTypes.shape().isRequired,
-    children: PropTypes.node
+    children: PropTypes.node,
+    className: PropTypes.string,
+    handleClick: PropTypes.func.isRequired,
 };
