@@ -25,6 +25,8 @@ class EventWindow extends React.Component {
             eventTypeVisible: false,
         };
 
+        console.log('handleSaveEvent', this.props.handleSaveEvent);
+
         this.findAssignType = {
             '000' : 2,
             '010' : 1,
@@ -47,6 +49,7 @@ class EventWindow extends React.Component {
 
     handleSave() {
         const newEvent = this.state.event ? this.state.event : {};
+        newEvent.id = this.state.event.id;
         newEvent.title = this.eventTitle.value;
         newEvent.startDate = this.state.startDate;
         newEvent.endDate = this.state.endDate;
@@ -55,6 +58,7 @@ class EventWindow extends React.Component {
         newEvent.assignType = this.state.assignType;
         newEvent.eventType = this.state.eventType;
         console.log('new event = ', newEvent);
+        this.props.handleSaveEvent(newEvent);
         this.props.handleHide();
     }
 
@@ -203,7 +207,8 @@ EventWindow.propTypes = {
         description: PropTypes.string.isRequired,
         location: PropTypes.string.isRequired
     }),
-    handleHide: PropTypes.func.isRequired
+    handleHide: PropTypes.func.isRequired,
+    handleSaveEvent: PropTypes.func.isRequired,
 };
 
 EventWindow.defaultProps = {

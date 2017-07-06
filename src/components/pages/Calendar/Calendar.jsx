@@ -36,6 +36,7 @@ export default class Calendar extends React.Component {
             newEvent: true,
             events : [
                 {
+                    id: 1,
                     startDate: moment('08.07.2017 14:00', 'DD.MM.YYYY HH:mm'),
                     endDate: moment('08.07.2017 18:00', 'DD.MM.YYYY HH:mm'),
                     eventType: 3,
@@ -45,6 +46,7 @@ export default class Calendar extends React.Component {
                     location: 'Офис GoIT'
                 },
                 {
+                    id: 2,
                     startDate: moment('08.07.2017 19:00', 'DD.MM.YYYY HH:mm'),
                     endDate: moment('08.07.2017', 'DD.MM.YYYY'),
                     eventType: 0,
@@ -64,6 +66,8 @@ export default class Calendar extends React.Component {
         this.handleHide = this.handleHide.bind(this);
         this.handleNewEvent = this.handleNewEvent.bind(this);
         this.createOrEditEventWindow = this.createOrEditEventWindow.bind(this);
+        this.handleNewEvent = this.handleNewEvent.bind(this);
+        this.handleSaveEvent = this.handleSaveEvent.bind(this);
 
         createEventMap(this.state.events);
     }
@@ -114,17 +118,29 @@ export default class Calendar extends React.Component {
         })
     }
 
+    handleSaveEvent(event) {
+        let newEvent = event;
+        if (!event.id) {
+            newEvent.id = this.state.events.length+1;
+        }
+        let newEvents = this.state.events;
+        newEvents.push(newEvent);
+        this.setState(newEvents);
+    }
+
     createOrEditEventWindow(newEvent) {
         return newEvent ?
             <EventWindow
                 className='c-event-window'
                 newEventDate={moment().add(1, 'days')}
                 newEventType={0}
-                handleHide={this.handleHide}/> :
+                handleHide={this.handleHide}
+                handleSaveEvent={this.handleSaveEvent}/> :
             <EventWindow
                 className='c-event-window'
                 event={this.state.selectedEvent}
-                handleHide={this.handleHide}/>
+                handleHide={this.handleHide}
+                handleSaveEvent={this.handleSaveEvent}/>
     }
 
     render() {
@@ -134,6 +150,7 @@ export default class Calendar extends React.Component {
                 period = {this.state.fromDate}
                 onClick = {this.switchMonth}
                 onCloseModal={this.toggleModal}
+                handleSaveEvent={this.handleSaveEvent}
                 />
 
                 <Route exact path='/calendar' render={()=>
@@ -141,6 +158,7 @@ export default class Calendar extends React.Component {
                         period={this.state.fromDate}
                         events={createEventMap(this.state.events)}
                         handleEventClick={this.handleEventClick}
+                        handleSaveEvent={this.handleSaveEvent}
                     />
                 }/>
                 <Route  path='/calendar/sprint' component={Sprint} />

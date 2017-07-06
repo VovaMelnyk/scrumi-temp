@@ -72,6 +72,7 @@ export default class CreateEvent extends React.Component {
                     <EventWindow
                         handleHide={this.handleEventWindowHide}
                         newEventType={this.state.eventType}
+                        handleSaveEvent={this.props.handleSaveEvent}
                     />
                 }
             </div>
@@ -81,5 +82,6 @@ export default class CreateEvent extends React.Component {
 
 
 CreateEvent.propTypes = {
-    onCloseModal: PropTypes.func.isRequired
+    onCloseModal: PropTypes.func.isRequired,
+    handleSaveEvent: PropTypes.func.isRequired,
 };
