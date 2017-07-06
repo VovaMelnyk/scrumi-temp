@@ -5,7 +5,6 @@ import './CreateEvent.scss';
 
 import Button from '../../Button/Button';
 import TypeEvent from '../../TypeEvent/TypeEvent';
-import EventWindow from './../../EventWindow/EventWindow';
 
 export default class CreateEvent extends React.Component {
     constructor() {
@@ -19,7 +18,6 @@ export default class CreateEvent extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleSelectEventType = this.handleSelectEventType.bind(this);
         this.handleEventWindowHide = this.handleEventWindowHide.bind(this);
-        this.createEvent = this.createEvent.bind(this)
     }
 
     handleClick() {
@@ -29,20 +27,7 @@ export default class CreateEvent extends React.Component {
     }
 
     handleSelectEventType(eventType) {
-        this.setState({
-            visible: !this.state.visible,
-            eventType: eventType ? eventType : 0,
-            eventWindowVisible: true,
-        });
-
-    }
-
-    createEvent() {
-        this.setState({
-            eventType: 0,
-            eventWindowVisible: true,
-        });
-
+        this.props.handleCreateEvent(eventType);
     }
 
     handleEventWindowHide() {
@@ -51,11 +36,10 @@ export default class CreateEvent extends React.Component {
         })
     }
 
-
     render() {
         return(
             <div className='event'>
-                <Button className="button-green" text="Создать событие" onClick={this.createEvent}/>
+                <Button className="button-green" text="Создать событие" onClick={this.props.handleCreateEvent.bind(null, 0)}/>
                 <Button className='button-green button-green--caret' text={String.fromCharCode(9660)} onClick={this.handleClick}/>
                 {this.state.visible &&
                 <TypeEvent
@@ -68,13 +52,6 @@ export default class CreateEvent extends React.Component {
                     handleClick={this.handleClick}
                     onClick={this.handleSelectEventType}/>
                 }
-                {this.state.eventWindowVisible &&
-                    <EventWindow
-                        handleHide={this.handleEventWindowHide}
-                        newEventType={this.state.eventType}
-                        handleSaveEvent={this.props.handleSaveEvent}
-                    />
-                }
             </div>
         );
     }
@@ -84,4 +61,5 @@ export default class CreateEvent extends React.Component {
 CreateEvent.propTypes = {
     onCloseModal: PropTypes.func.isRequired,
     handleSaveEvent: PropTypes.func.isRequired,
+    handleCreateEvent: PropTypes.func.isRequired,
 };

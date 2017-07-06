@@ -26,6 +26,7 @@ export default class CalendarNav extends React.Component {
                 <CreateEvent
                     onCloseModal={this.props.onCloseModal}
                     handleSaveEvent={this.props.handleSaveEvent}
+                    handleCreateEvent={this.props.handleCreateEvent}
                 />
             </div>
         );
@@ -37,4 +38,5 @@ CalendarNav.propTypes = {
     onClick: PropTypes.func.isRequired,
     onCloseModal: PropTypes.func.isRequired,
     handleSaveEvent: PropTypes.func.isRequired,
+    handleCreateEvent: PropTypes.func.isRequired,
 };

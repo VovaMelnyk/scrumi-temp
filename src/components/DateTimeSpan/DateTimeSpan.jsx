@@ -18,7 +18,7 @@ class DateTimeSpan extends React.Component {
             visible: false,
         };
 
-        this.dateFormat = ['DD MMMM YYYY kk:mm', 'DD MMMM YYYY'];
+        this.dateFormat = ['DD MMMM YYYY HH:mm', 'DD MMMM YYYY'];
         moment.locale('ru');
 
 
