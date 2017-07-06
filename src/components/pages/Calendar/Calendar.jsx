@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from './../../DatePicker/DatePicker';
 import moment from 'moment';
+import _ from 'lodash';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './Calendar.scss';
@@ -11,8 +12,18 @@ import Sprint from './Sprint/Sprint'
 import ModalWindow from '../../ModalWindow/ModalWindow'
 
 
-import Event from './Event/Event';
 import EventWindow from './EventWindow/EventWindow';
+
+function createEventMap(eventArray) {
+    const eventMap = new Map;
+    _.forEach(eventArray, function(item) {
+        let dayEventArray = eventMap.has(item.startDate.format('DD.MM.YYYY')) ? eventMap.get(item.startDate.format('DD.MM.YYYY')) : [];
+        dayEventArray.push(item);
+        eventMap.set(item.startDate.format('DD.MM.YYYY'), dayEventArray);
+    });
+
+    return eventMap
+}
 
 export default class Calendar extends React.Component {
     constructor() {
@@ -23,24 +34,26 @@ export default class Calendar extends React.Component {
             isOpenModal: false,
             editEventWindow: false,
             newEvent: true,
-            event: {
-                startDate: moment().subtract(1, 'days'),
-                endDate: moment(),
-                eventType: 0,
-                assignType: 1,
-                title: 'New Event',
-                description: 'Описание нашего мероприятия, может быть в несколько строк',
-                location: 'Офис GoIT'
-            },
-            event2: {
-                startDate: moment().subtract(3, 'days'),
-                endDate: moment().subtract(2, 'days'),
-                eventType: 0,
-                assignType: 0,
-                title: 'New Event 2',
-                description: 'Еще одно описание',
-                location: 'McDonalds'
-            },
+            events : [
+                {
+                    startDate: moment('08.07.2017 14:00', 'DD.MM.YYYY HH:mm'),
+                    endDate: moment('08.07.2017 18:00', 'DD.MM.YYYY HH:mm'),
+                    eventType: 0,
+                    assignType: 0,
+                    title: 'Offline встреча',
+                    description: 'Разбираем прошедший спринт',
+                    location: 'Офис GoIT'
+                },
+                {
+                    startDate: moment('08.07.2017 19:00', 'DD.MM.YYYY HH:mm'),
+                    endDate: moment('08.07.2017', 'DD.MM.YYYY'),
+                    eventType: 0,
+                    assignType: 1,
+                    title: 'Гулянка в пабе',
+                    description: 'Тимбилдинг :)',
+                    location: 'This is ПИВБАР'
+                }
+            ],
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -52,6 +65,7 @@ export default class Calendar extends React.Component {
         this.handleNewEvent = this.handleNewEvent.bind(this);
         this.createOrEditEventWindow = this.createOrEditEventWindow.bind(this);
 
+        createEventMap(this.state.events);
     }
 
     handleClick() {
@@ -122,7 +136,7 @@ export default class Calendar extends React.Component {
                 onCloseModal={this.toggleModal}
                 />
 
-                <Route exact path='/calendar' render={()=><Month period={this.state.fromDate}/>}/>
+                <Route exact path='/calendar' render={()=><Month period={this.state.fromDate} events={createEventMap(this.state.events)}/>}/>
                 <Route  path='/calendar/sprint' component={Sprint} />
                 {this.state.isOpenModal &&
                     <ModalWindow

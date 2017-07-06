@@ -39,7 +39,7 @@ Event.propTypes = {
         endDate: PropTypes.shape.isRequired,
         description: PropTypes.string.isRequired,
         location: PropTypes.string.isRequired
-    }),
+    }).isRequired,
     handleClick: PropTypes.func.isRequired
 };
 

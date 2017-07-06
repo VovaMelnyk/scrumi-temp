@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 import './Month.scss';
 import MonthCell from './MonthCell/MonthCell';
+import Event from './../Event/Event';
 
 const WeekDays = () => {
     let days = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
@@ -59,13 +60,28 @@ export default class Month extends React.Component {
 
 
     render() {
-
+        // const events = this.props.events.has(cell.format('DD.MM.YYYY')) ?
+        //     _.forEach(this.props.events.get(cell.format('DD.MM.YYYY')), function(event) {
+        //         return <Event
+        //             className="c-event"
+        //             event={event}
+        //             handleClick={function() {console.log('click on Event')}}
+        //         />
+        //     }) : null;
         let grid = _.map(this.dateAdd(this.state.now),(cell) => {
             return <MonthCell
                 month={this.state.now}
                 key={uuid()}
-                cellDate={cell}
-            />
+                cellDate={cell}>
+                {this.props.events.has(cell.format('DD.MM.YYYY')) &&
+                    _.map(this.props.events.get(cell.format('DD.MM.YYYY')), event => {
+                        return <Event
+                            uuid={uuid()}
+                            className="c-event"
+                            event={event}
+                            handleClick={function() {console.log('click on Event')}}/>
+                    })}
+            </MonthCell>
         });
 
         return(
@@ -82,6 +98,6 @@ export default class Month extends React.Component {
 
 Month.propTypes = {
     period: PropTypes.shape().isRequired,
-
+    events: PropTypes.shape().isRequired,
 };
 
