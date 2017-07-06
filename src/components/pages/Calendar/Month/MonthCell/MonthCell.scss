@@ -18,9 +18,9 @@
      color: #fff;
  }
 
- .today::after {
+ .today .date::after {
      content: 'today';
-     margin-left: rem(-6);
+     margin-left: rem(2);
      font-size: rem(14);
  }
 
