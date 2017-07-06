@@ -25,8 +25,6 @@ class EventWindow extends React.Component {
             eventTypeVisible: false,
         };
 
-        console.log('handleSaveEvent', this.props.handleSaveEvent);
-
         this.findAssignType = {
             '000' : 2,
             '010' : 1,

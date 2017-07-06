@@ -120,11 +120,17 @@ export default class Calendar extends React.Component {
 
     handleSaveEvent(event) {
         let newEvent = event;
+        let newEvents = this.state.events;
         if (!event.id) {
             newEvent.id = this.state.events.length+1;
+            newEvents.push(newEvent);
+        } else {
+            const eventIndex = _.findIndex(this.state.events, function(e) {
+                return e.id === event.id
+            })
+            newEvents[eventIndex] = event;
         }
-        let newEvents = this.state.events;
-        newEvents.push(newEvent);
+
         this.setState(newEvents);
     }
 
