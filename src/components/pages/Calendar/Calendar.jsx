@@ -196,6 +196,7 @@ export default class Calendar extends React.Component {
                 {this.state.editEventWindow &&
                     this.createOrEditEventWindow(this.state.newEvent)
                 }
+
             </div>
         );
     }

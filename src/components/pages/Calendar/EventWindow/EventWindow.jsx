@@ -9,6 +9,7 @@ import DateTimeSpan from './../../../DateTimeSpan/DateTimeSpan';
 import TypeEvent from './../TypeEvent/TypeEvent';
 import Button from './../Button/Button';
 import ModalWindow from'./../../../ModalWindow/ModalWindow';
+import QuestionWindow from '../../../QuestionWindow/QuestionWindow';
 
 class EventWindow extends React.Component {
     constructor(props) {
@@ -23,6 +24,8 @@ class EventWindow extends React.Component {
             startDate: this.props.event ? this.props.event.startDate : this.props.newEventDate,
             endDate: this.props.event ? this.props.event.endDate : this.props.newEventDate,
             eventTypeVisible: false,
+            questionVisible: false,
+            text: null
         };
 
         this.findAssignType = {
@@ -43,6 +46,9 @@ class EventWindow extends React.Component {
         this.handleChangeEventType = this.handleChangeEventType.bind(this);
         this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
         this.handleCloseList = this.handleCloseList.bind(this);
+        this.showQuestion = this.showQuestion.bind(this);
+        this.modal = this.modal.bind(this)
+
     }
 
     handleSave() {
@@ -103,6 +109,22 @@ class EventWindow extends React.Component {
         });
     }
 
+    showQuestion(e) {
+        this.setState({
+            questionVisible: !this.state.questionVisible,
+            text: e.target.innerHTML.toLowerCase()
+        });
+    }
+
+    modal(e) {
+        if (e.target.innerHTML.toLowerCase() === 'сохранить') {
+            console.log('save')
+        } else if (e.target.innerHTML.toLowerCase() === 'удалить') {
+            console.log('delete')
+        }
+    }
+
+
     render() {
         let dateBlock = <div className={`${this.props.className}__date-block`}>
                     <span className={`${this.props.className}__span-title`}>Дата начала:</span>
@@ -156,7 +178,7 @@ class EventWindow extends React.Component {
                     </button>
                     <button
                         className={`${this.props.className}__button`}
-                        onClick={this.handleSave}>
+                        onClick={this.showQuestion}>
                         Сохранить
                     </button>
                 </div>,
@@ -191,7 +213,15 @@ class EventWindow extends React.Component {
                     {dateBlock}
                     {infoBlock}
                     {buttonBlock}
-                </ModalWindow>
+                {this.state.questionVisible &&
+                <QuestionWindow
+                    no={this.showQuestion}
+                    yes={this.handleSave}
+                    onCloseModal={this.showQuestion}
+                    text={`Вы желаете ${this.state.text} событие?`}
+                />
+                }
+                </ModalWindow>;
         return (
             content
         )
