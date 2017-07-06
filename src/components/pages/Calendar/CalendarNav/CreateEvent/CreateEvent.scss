@@ -1,5 +1,29 @@
+@import './../../../../Theme/theme';
+
 .event {
     display: flex;
     align-self: center;
     position: relative;
-    }
+    margin: rem(20) rem(45) rem(15) 0;
+
+    .button-green{
+      border-radius: .25rem 0 0 .25rem;
+      border-right: none;
+  }
+    .button-green--caret{
+      border-left: none;
+      border-color: $green-dark;
+      background: $grad-green-dark;
+      width: rem(35);
+      border-radius: 0 .25rem .25rem 0;
+      font-size: rem(8);
+}
+    &:active{
+      background: $grad-green-dark-neg;
+
+  }
+  .button-green--caret:hover{
+    background: $grad-green-dark-neg;
+
+}
+  }
