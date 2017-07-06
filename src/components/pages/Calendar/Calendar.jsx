@@ -38,7 +38,7 @@ export default class Calendar extends React.Component {
                 {
                     startDate: moment('08.07.2017 14:00', 'DD.MM.YYYY HH:mm'),
                     endDate: moment('08.07.2017 18:00', 'DD.MM.YYYY HH:mm'),
-                    eventType: 0,
+                    eventType: 3,
                     assignType: 0,
                     title: 'Offline встреча',
                     description: 'Разбираем прошедший спринт',

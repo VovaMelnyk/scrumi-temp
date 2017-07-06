@@ -79,7 +79,8 @@ export default class Month extends React.Component {
                             uuid={uuid()}
                             className="c-event"
                             event={event}
-                            handleClick={this.props.handleEventClick.bind(null, event)}/>
+                            handleClick={this.props.handleEventClick.bind(null, event)}
+                        />
                     })}
             </MonthCell>
         });

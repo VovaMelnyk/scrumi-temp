@@ -11,6 +11,8 @@ class Event extends React.Component {
             editEvent: false
         };
 
+        this.classNames = ['standup', 'demo', 'retro'];
+
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -21,7 +23,7 @@ class Event extends React.Component {
     render() {
         return (
             <div
-                className={this.props.className}
+                className={this.props.className + (this.props.event.eventType ? ` ${this.props.className}--${this.classNames[this.props.event.eventType - 1]}` : '')}
                 onClick={this.handleClick}>
                 {this.props.event.assignType!==2 &&
                     <span className={`${this.props.className}__time`}>{this.props.event.startDate.format('kk:mm')}</span>}
