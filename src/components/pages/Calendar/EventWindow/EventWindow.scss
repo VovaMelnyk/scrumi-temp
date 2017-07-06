@@ -10,12 +10,15 @@
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
+    padding: rem(27);
     //width: 30rem;
     //height: 20rem;
     background: #ccc;
 
     &__event-title {
         flex-basis: 75%;
+        width: rem(448);
+
     }
 
     &__event-type {
@@ -73,4 +76,3 @@
         flex-basis: 25%;
     }
 }
-

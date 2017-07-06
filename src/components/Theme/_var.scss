@@ -36,6 +36,8 @@ $yellow:              #fae716;                  //Lemon
 
 // Gradients:
 
+$top-green-dark:      #48a425;
+$bot-green-dark:      $green;
 $top-green:           #64dd17;
 $bot-green:           #59c714;
 $top-red:             $red;
@@ -45,6 +47,9 @@ $bot-gray:            #949494;
 $top-blue:            #71b6de;
 $bot-blue:            #629dbf;
 
+$grad-green-dark:     linear-gradient($top-green-dark, $bot-green-dark);
+$grad-green-dark-neg: linear-gradient($bot-green-dark, $top-green-dark);
+$grad-green:          linear-gradient($top-green, $bot-green);
 $grad-green:          linear-gradient($top-green, $bot-green);
 $grad-green-neg:      linear-gradient($bot-green, $top-green);
 $grad-red:            linear-gradient($top-red, $bot-red);
@@ -98,14 +103,3 @@ $fc-gray-light:       $gray-60;   // 999                 // lighter text color
 $link-color:          $blue;      // 3189d6
 $fc-red:              $red;                              // alert and warnings
 $fc-code:             $brown;     // Woodrush            // color for code-quote in chat
-
-
-
-
-
-
-
-
-
-
-

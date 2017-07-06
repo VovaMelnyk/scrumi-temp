@@ -35,6 +35,7 @@ export default class Calendar extends React.Component {
             isOpenModal: false,
             editEventWindow: false,
             newEvent: true,
+            eventIdCounter: 2,
             events : [
                 {
                     id: 1,
@@ -69,6 +70,7 @@ export default class Calendar extends React.Component {
         this.createOrEditEventWindow = this.createOrEditEventWindow.bind(this);
         this.handleNewEvent = this.handleNewEvent.bind(this);
         this.handleSaveEvent = this.handleSaveEvent.bind(this);
+        this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
 
         createEventMap(this.state.events);
     }
@@ -123,16 +125,31 @@ export default class Calendar extends React.Component {
         let newEvent = event;
         let newEvents = this.state.events;
         if (!event.id) {
-            newEvent.id = this.state.events.length+1;
+            newEvent.id = this.state.eventIdCounter + 1;
             newEvents.push(newEvent);
+            this.setState({
+                eventIdCounter: this.state.eventIdCounter + 1
+            })
         } else {
             const eventIndex = _.findIndex(this.state.events, function(e) {
                 return e.id === event.id
-            })
+            });
             newEvents[eventIndex] = event;
         }
+        this.setState({
+            events: newEvents,
+        })
+    }
 
-        this.setState(newEvents);
+    handleDeleteEvent(eventId) {
+        const eventIndex = _.findIndex(this.state.events, function(e) {
+            return e.id === eventId
+        });
+        let newEvents = this.state.events;
+        _.pullAt(newEvents, eventIndex);
+        this.setState({
+            events: newEvents
+        })
     }
 
     createOrEditEventWindow(newEvent) {
@@ -142,12 +159,14 @@ export default class Calendar extends React.Component {
                 newEventDate={moment().add(1, 'days')}
                 newEventType={0}
                 handleHide={this.handleHide}
-                handleSaveEvent={this.handleSaveEvent}/> :
+                handleSaveEvent={this.handleSaveEvent}
+                handleDeleteEvent={this.handleDeleteEvent}/> :
             <EventWindow
                 className='c-event-window'
                 event={this.state.selectedEvent}
                 handleHide={this.handleHide}
-                handleSaveEvent={this.handleSaveEvent}/>
+                handleSaveEvent={this.handleSaveEvent}
+                handleDeleteEvent={this.handleDeleteEvent}/>
     }
 
     render() {
