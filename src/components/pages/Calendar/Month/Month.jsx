@@ -79,7 +79,7 @@ export default class Month extends React.Component {
                             uuid={uuid()}
                             className="c-event"
                             event={event}
-                            handleClick={function() {console.log('click on Event')}}/>
+                            handleClick={this.props.handleEventClick.bind(null, event)}/>
                     })}
             </MonthCell>
         });
@@ -99,5 +99,6 @@ export default class Month extends React.Component {
 Month.propTypes = {
     period: PropTypes.shape().isRequired,
     events: PropTypes.shape().isRequired,
+    handleEventClick: PropTypes.func.isRequired,
 };
 
