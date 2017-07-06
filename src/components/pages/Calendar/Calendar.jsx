@@ -14,6 +14,7 @@ import ModalWindow from '../../ModalWindow/ModalWindow'
 
 import EventWindow from './EventWindow/EventWindow';
 
+
 function createEventMap(eventArray) {
     const eventMap = new Map;
     _.forEach(eventArray, function(item) {

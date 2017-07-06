@@ -20,14 +20,14 @@ class ModalWindow extends React.Component{
     render(){
         return(
             <div className='overlay'
-            onClick={this.props.onCloseModal}>
+                onClick={this.props.onCloseModal}>
                 <div className={`modal ${this.props.className}`}
-                onClick={this.stopPropagation}>
+                    onClick={this.stopPropagation}>
                     <span className='modal__close' onClick={this.props.onCloseModal}>{String.fromCharCode(10006)}</span>
                     {this.props.children}
                 </div>
             </div>
-        )
+        );
     }
 }
 
