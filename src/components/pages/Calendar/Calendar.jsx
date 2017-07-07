@@ -36,6 +36,7 @@ export default class Calendar extends React.Component {
             editEventWindow: false,
             newEvent: true,
             newEventType: 0,
+            newEventStartDate: moment(),
             eventIdCounter: 2,
             events : [
                 {
@@ -115,11 +116,12 @@ export default class Calendar extends React.Component {
         })
     }
 
-    handleNewEvent(eventType) {
+    handleNewEvent(eventType, eventDate) {
         this.setState({
             newEvent: true,
             newEventType: eventType,
             editEventWindow: true,
+            newEventStartDate: eventDate ? eventDate : moment(),
         })
     }
 
@@ -158,7 +160,7 @@ export default class Calendar extends React.Component {
         return newEvent ?
             <EventWindow
                 className='c-event-window'
-                newEventDate={moment().minute() < 30 ? moment().startOf('hour').add(30, 'm') : moment().add(30, 'm').startOf('hour')}
+                newEventDate={this.state.newEventStartDate.minute() < 30 ? this.state.newEventStartDate.startOf('hour').add(30, 'm') : this.state.newEventStartDate.add(30, 'm').startOf('hour')}
                 newEventType={this.state.newEventType}
                 handleHide={this.handleHide}
                 handleSaveEvent={this.handleSaveEvent}

@@ -33,9 +33,12 @@ export default class Month extends React.Component {
             showEventList: this.createEventListMatrix(this.props.period),
         };
         this.eventListVisible = false;
+        this.skipClick = false;
         this.switchMonth = this.switchMonth.bind(this);
         this.handleCellClick = this.handleCellClick.bind(this);
         this.createEventListMatrix = this.createEventListMatrix.bind(this);
+        this.handleEventListHide = this.handleEventListHide.bind(this);
+        this.handleAddEvent = this.handleAddEvent.bind(this);
     }
 
     createEventListMatrix(date) {
@@ -88,7 +91,12 @@ export default class Month extends React.Component {
     };
 
     handleCellClick(cellDate, visible) {
-        if (this.eventListVisible !== visible) {
+        if (this.skipClick) {
+            this.skipClick = false;
+            return;
+        }
+
+        if (!this.eventListVisible) {
             let eventListMatrix = this.createEventListMatrix(cellDate);
             eventListMatrix.set(cellDate.format('DD.MM.YYYY'), visible);
             this.setState({
@@ -96,8 +104,21 @@ export default class Month extends React.Component {
             });
             this.eventListVisible = visible;
         }
-        event.stopPropagation();
-        console.log('event', event);
+    }
+
+    handleEventListHide(cellDate) {
+        let eventListMatrix = this.createEventListMatrix(cellDate);
+        eventListMatrix.set(cellDate.format('DD.MM.YYYY'), false);
+        this.setState({
+            showEventList: eventListMatrix,
+        });
+        this.eventListVisible = false;
+    }
+
+    handleAddEvent(cellDate) {
+        this.props.handleNewEvent(0, cellDate);
+        this.handleEventListHide(cellDate);
+        this.skipClick = true;
     }
 
     render() {
@@ -122,20 +143,23 @@ export default class Month extends React.Component {
                         key={uuid()}
                         cellDate={cell}
                         className='c-date--event-list'
-                        handleClick={this.handleCellClick}
-                        canHide={true}>
+                        canHide={true}
+                        handleHide={this.handleEventListHide}>
                         {this.props.events.has(cell.format('DD.MM.YYYY')) &&
                         _.map(this.props.events.get(cell.format('DD.MM.YYYY')), event => {
                             return <Event
                                 key={uuid()}
                                 className="c-event"
                                 event={event}
-                                handleClick={this.props.handleEventClick.bind(null, event)}
+                                handleClick={(e) => {
+                                    this.props.handleEventClick(event);
+                                    this.handleEventListHide(cell);
+                                }}
                             />
                         })}
                         <button
                             className="c-date__add-event"
-                            onClick={this.props.handleNewEvent.bind(null, 0)}>
+                            onClick={this.handleAddEvent.bind(null, cell)}>
                             +
                         </button>
                     </MonthCell>}
