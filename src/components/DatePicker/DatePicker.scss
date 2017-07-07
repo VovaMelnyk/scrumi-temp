@@ -1,14 +1,19 @@
+@import '../Theme/theme.scss';
 .date-picker {
-    width: 200px;
-    outline: red solid 1px;
+    width: rem(250);
+    //height: rem(250);
+    outline: $gray-80 solid 1px;
     position: absolute;
-    background: #dddddd;
-}
+    background: #fff;
+   padding: rem(10);
+    color: $black;
 
 .date-picker__grid {
     * {
         margin: 0;
         padding: 0;
+        height: rem(29);
+
     }
 
     li {
@@ -29,11 +34,22 @@
 }
 
 .date-picker_week-days {
-  margin: rem(1);
-    background: gray;
-}
+  //margin-top: rem(10);
+  display: flex;
+  align-items: center;
+  align-content: center;
 
+}
+&__cell{
+
+}
 .date-picker__nav {
     display: flex;
     justify-content: space-around;
+    align-items: center;
+
+}
+&__cell{
+  //height: rem(30);
+}
 }

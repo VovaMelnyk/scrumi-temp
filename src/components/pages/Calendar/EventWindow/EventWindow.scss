@@ -54,7 +54,7 @@
     }
 
     &__date-block:first-child{
-      margin-top: 60px;
+      margin-top: 180px;
     }
     &__span-title {
         display: inline-block;
@@ -68,11 +68,9 @@
         flex: 1 1 48%;
         vertical-align: middle;
         padding-left: 5px;
-        cursor: pointer;
-        text-align: left;
         color: $blue;
+        cursor: pointer;
         border-bottom: dashed;
-        overflow: hidden;
     }
 
     &__checkbox {
@@ -120,4 +118,8 @@
        @include button-red;
        margin-left: rem(50);
      }
+
+    &__butoon:before{
+      content: " ";
+    }
 }

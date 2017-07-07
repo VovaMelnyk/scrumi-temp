@@ -1,18 +1,27 @@
+@import '../Theme/theme.scss';
+
 .date-picker__cell {
     display: flex;
     flex-basis: calc(100% / 7);
     justify-content: center;
     align-items: center;
+    //outline: solid 1px gray;
+    //border-right: solid 1px gray;
+
+    font: rem(12);
 }
 
 .date-picker_today {
-    background: green;
+    background: $blue;
+    color: white;
 }
 
 .date-picker_other-month {
-    background: #c896ff;
+    background: $gray-80;
+    color: white;
 }
 
 .date-picker_selected-date {
-    background: green;
+    background: $green-light;
+    color: white;
 }
