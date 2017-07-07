@@ -32,6 +32,7 @@
         box-shadow: 0 rem(1) rem(1) 0 #a9a9a9;
         cursor: pointer;
         list-style: none;
+        z-index: 1;
     }
     &__menu::before {
         content: '';
