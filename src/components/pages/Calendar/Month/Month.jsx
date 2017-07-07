@@ -32,6 +32,7 @@ export default class Month extends React.Component {
             now: this.props.period,
             showEventList: this.createEventListMatrix(this.props.period),
         };
+        this.eventListVisible = false;
         this.switchMonth = this.switchMonth.bind(this);
         this.handleCellClick = this.handleCellClick.bind(this);
         this.createEventListMatrix = this.createEventListMatrix.bind(this);
@@ -44,15 +45,15 @@ export default class Month extends React.Component {
         startDate = startDate.startOf('month').subtract(startDate.startOf('month').day()-1, 'days');
         endDate = endDate.endOf('month').add(7 - endDate.endOf('month').days(), 'days');
         const diff = Math.round(moment.duration(endDate-startDate).asDays());
-        console.log('startDate', startDate);
-        console.log('endDate', endDate);
+        // console.log('startDate', startDate);
+        // console.log('endDate', endDate);
         let cellDate = startDate;
         _.times(diff, function() {
             eventListMatrix.set(moment(cellDate).format('DD.MM.YYYY'), false);
             cellDate.add(1, 'd');
         });
 
-        console.log('eventListMatrix', eventListMatrix);
+        // console.log('eventListMatrix', eventListMatrix);
         return eventListMatrix
 
     }
@@ -86,15 +87,18 @@ export default class Month extends React.Component {
         return collection
     };
 
-    handleCellClick(cellDate) {
-        console.log('click');
-        // let eventListMatrix = this.createEventListMatrix(cellDate);
-        // eventListMatrix.set(cellDate.format('DD.MM.YYYY'), true);
-        // this.setState({
-        //     showEventList: eventListMatrix,
-        // })
+    handleCellClick(cellDate, visible) {
+        if (this.eventListVisible !== visible) {
+            let eventListMatrix = this.createEventListMatrix(cellDate);
+            eventListMatrix.set(cellDate.format('DD.MM.YYYY'), visible);
+            this.setState({
+                showEventList: eventListMatrix,
+            });
+            this.eventListVisible = visible;
+        }
+        event.stopPropagation();
+        console.log('event', event);
     }
-
 
     render() {
         let grid = _.map(this.dateAdd(this.state.now),(cell) => {
@@ -118,7 +122,8 @@ export default class Month extends React.Component {
                         key={uuid()}
                         cellDate={cell}
                         className='c-date--event-list'
-                        handleClick={this.handleCellClick}>
+                        handleClick={this.handleCellClick}
+                        canHide={true}>
                         {this.props.events.has(cell.format('DD.MM.YYYY')) &&
                         _.map(this.props.events.get(cell.format('DD.MM.YYYY')), event => {
                             return <Event

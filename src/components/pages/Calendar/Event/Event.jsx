@@ -16,7 +16,8 @@ class Event extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
+    handleClick(event) {
+        event.stopPropagation();
         this.props.handleClick(this.props.event);
     }
 
