@@ -9,6 +9,7 @@
     list-style: none;
     position: absolute;
     top: rem(38);
+    z-index: 1;
     &__item {
         position: relative;
         padding: rem(7) rem(10);

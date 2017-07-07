@@ -23,15 +23,15 @@ export default class QuestionWindow extends React.Component {
             >
                 <p className='question__text'>{this.props.text}</p>
                 <div className="question__buttons">
-                    <Button text='Нет'
-                            className='button-red'
-                            onClick={this.props.no}
-                            id='Нет'
-                    />
                     <Button text='Да'
                             className='button-green'
                             onClick={this.props.yes}
                             id='Да'
+                    />
+                    <Button text='Нет'
+                            className='button-red'
+                            onClick={this.props.no}
+                            id='Нет'
                     />
                 </div>
 

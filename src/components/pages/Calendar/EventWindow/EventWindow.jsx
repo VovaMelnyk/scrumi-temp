@@ -6,10 +6,10 @@ import "moment/locale/ru";
 
 import './EventWindow.scss';
 import DateTimeSpan from './../../../DateTimeSpan/DateTimeSpan';
-import TypeEvent from './../TypeEvent/TypeEvent';
 import Button from './../Button/Button';
 import QuestionWindow from '../../../QuestionWindow/QuestionWindow';
 import ModalWindow from'./../../../ModalWindow/ModalWindow';
+import TypeEvent from './../TypeEvent/TypeEvent';
 
 class EventWindow extends React.Component {
     constructor(props) {
@@ -188,12 +188,13 @@ class EventWindow extends React.Component {
                         defaultValue={this.props.event ? this.props.event.title : ''}
                         ref={(input) => { this.eventTitle = input; }}
                     />
-                    <button
-                        className={`${this.props.className}__event-type`}
-                        onClick={this.handleClickEventType}>
-                        {this.state.eventTypeVisible ? 'Тип события' : this.eventTypes[this.state.eventType]}
-                    </button>
-                    {this.state.eventTypeVisible &&
+                    <div className={`${this.props.className}__types`}>
+                        <button
+                            className={`${this.props.className}__event-type`}
+                            onClick={this.handleClickEventType}>
+                            {this.state.eventTypeVisible ? 'Тип события' : this.eventTypes[this.state.eventType]}
+                        </button>
+                        {this.state.eventTypeVisible &&
                         <TypeEvent
                             types = {[
                                 {title:'Событие', key:'custom'},
@@ -204,6 +205,7 @@ class EventWindow extends React.Component {
                             ]}
                             handleClick={this.handleCloseList}
                             onClick={this.handleChangeEventType}/>}
+                    </div>
 
                     {dateBlock}
                     {infoBlock}
