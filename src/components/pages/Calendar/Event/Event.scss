@@ -9,8 +9,12 @@
 }
 .c-event {
     border-bottom: rem(1) solid #e6e6e6; // відсутній колір
-    padding: rem(15) rem(0) rem(15) rem(5);
+   padding-left: rem(5);
     font-size: rem(14);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: rem(46);
     &:hover{
         background-color: #ececec; // відсутній колір
         cursor: pointer;
@@ -38,28 +42,22 @@
     margin-right: rem(10);
     float: left;
 }
-.c-event__cell{
-    padding: rem(10);
-    margin: {
-        top: rem(2);
-        bottom: rem(2);
-    };
-}
-.c-add-event{
-    @extend .c-event__cell;
-    border-bottom: none;
-    text-align: center;
-    font-size: rem(16);
-    font-weight: bold;
-    &:hover{
-        background: none;
-    }
-}
-.c-add-event__style{
-    border: rem(3) solid #e6e6e6;
-    border-radius: rem(20);
-    padding: rem(3) rem(7);
-}
+
+//.c-add-event{
+//    @extend .c-event__cell;
+//    border-bottom: none;
+//    text-align: center;
+//    font-size: rem(16);
+//    font-weight: bold;
+//    &:hover{
+//        background: none;
+//    }
+//}
+//.c-add-event__style{
+//    border: rem(3) solid #e6e6e6;
+//    border-radius: rem(20);
+//    padding: rem(3) rem(7);
+//}
 .c-event--standup{
     background: $green-light;
     color: #fff;
