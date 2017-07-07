@@ -9,7 +9,7 @@ class TimePicker extends React.Component {
         super(props);
 
         this.state = {
-            selectedTime: this.props.selectedTime ? this.props.selectedTime.format('kk:mm') : ''
+            selectedTime: this.props.selectedTime ? this.props.selectedTime.format('HH:mm') : ''
         };
 
         this.handleChange = this.handleChange.bind(this);
