@@ -187,6 +187,7 @@ export default class Calendar extends React.Component {
                         events={createEventMap(this.state.events)}
                         handleEventClick={this.handleEventClick}
                         handleSaveEvent={this.handleSaveEvent}
+                        handleNewEvent={this.handleNewEvent}
                     />
                 }/>
                 <Route  path='/calendar/sprint' component={Sprint} />
