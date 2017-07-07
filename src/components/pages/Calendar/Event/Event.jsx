@@ -16,7 +16,8 @@ class Event extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
+    handleClick(event) {
+        event.stopPropagation();
         this.props.handleClick(this.props.event);
     }
 
@@ -26,7 +27,7 @@ class Event extends React.Component {
                 className={this.props.className + (this.props.event.eventType ? ` ${this.props.className}--${this.classNames[this.props.event.eventType - 1]}` : '')}
                 onClick={this.handleClick}>
                 {this.props.event.assignType!==2 &&
-                    <span className={`${this.props.className}__time`}>{this.props.event.startDate.format('kk:mm')}</span>}
+                    <span className={`${this.props.className}__time`}>{this.props.event.startDate.format('HH:mm')}</span>}
                 <span className={`${this.props.className}__cell`}>{this.props.event.title}</span>
             </div>
         )
