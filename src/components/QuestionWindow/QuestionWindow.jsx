@@ -6,7 +6,7 @@ import Button from '../pages/Calendar/Button/Button';
 import './QuestionWindow.scss';
 
 
-export default class ConfirmWindow extends React.Component {
+export default class QuestionWindow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,20 +22,25 @@ export default class ConfirmWindow extends React.Component {
                 onCloseModal={this.props.onCloseModal}
             >
                 <p className='question__text'>{this.props.text}</p>
-                <Button text='Нет'
-                    className='button-red'
-                    onClick={this.props.no}
-                />
-                <Button text='Да'
-                        className='button-green'
-                        onClick={this.props.yes}
-                />
+                <div className="question__buttons">
+                    <Button text='Нет'
+                            className='button-red'
+                            onClick={this.props.no}
+                            id='Нет'
+                    />
+                    <Button text='Да'
+                            className='button-green'
+                            onClick={this.props.yes}
+                            id='Да'
+                    />
+                </div>
+
             </ModalWindow>
     );
     }
 }
 
-ConfirmWindow.propTypes = {
+QuestionWindow.propTypes = {
     text: PropTypes.string.isRequired,
     onCloseModal: PropTypes.func.isRequired,
     yes: PropTypes.func.isRequired,

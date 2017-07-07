@@ -8,8 +8,8 @@ import './EventWindow.scss';
 import DateTimeSpan from './../../../DateTimeSpan/DateTimeSpan';
 import TypeEvent from './../TypeEvent/TypeEvent';
 import Button from './../Button/Button';
-import ModalWindow from'./../../../ModalWindow/ModalWindow';
 import QuestionWindow from '../../../QuestionWindow/QuestionWindow';
+import ModalWindow from'./../../../ModalWindow/ModalWindow';
 
 class EventWindow extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class EventWindow extends React.Component {
             endDate: this.props.event ? this.props.event.endDate : this.props.newEventDate,
             eventTypeVisible: false,
             questionVisible: false,
-            text: null
+            buttonId: null
         };
 
         this.findAssignType = {
@@ -111,7 +111,7 @@ class EventWindow extends React.Component {
     showQuestion(e) {
         this.setState({
             questionVisible: !this.state.questionVisible,
-            text: e.target.innerHTML.toLowerCase()
+            buttonId: e.target.id
         });
     }
 
@@ -162,6 +162,7 @@ class EventWindow extends React.Component {
                             className={`${this.props.className}__button`}
                             text='Удалить'
                             onClick={this.showQuestion}
+                            id='удалить'
                         />}
                     <button
                         className={`${this.props.className}__button`}
@@ -170,7 +171,9 @@ class EventWindow extends React.Component {
                     </button>
                     <button
                         className={`${this.props.className}__button`}
-                        onClick={this.showQuestion}>
+                        onClick={this.showQuestion}
+                        id='сохранить'
+                    >
                         Сохранить
                     </button>
                 </div>,
@@ -208,10 +211,9 @@ class EventWindow extends React.Component {
                 {this.state.questionVisible &&
                 <QuestionWindow
                     no={this.showQuestion}
-                    yes= {this.state.text  === 'сохранить'? this.handleSave : this.handleDeleteEvent}
-
+                    yes= {this.state.buttonId  === 'сохранить'? this.handleSave : this.handleDeleteEvent}
                     onCloseModal={this.showQuestion}
-                    text={`Вы желаете ${this.state.text} событие?`}
+                    text={`Вы желаете ${this.state.buttonId} событие?`}
                 />
                 }
                 </ModalWindow>;

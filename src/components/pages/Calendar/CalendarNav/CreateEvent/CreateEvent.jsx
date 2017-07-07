@@ -39,8 +39,8 @@ export default class CreateEvent extends React.Component {
     render() {
         return(
             <div className='event'>
-                <Button className="button-green" text="Создать событие" onClick={this.props.handleCreateEvent.bind(null, 0)}/>
-                <Button className='button-green button-green--caret' text={String.fromCharCode(9660)} onClick={this.handleClick}/>
+                <Button className="button-green" text="Создать событие" onClick={this.props.handleCreateEvent.bind(null, 0)} id={'Создать событие'}/>
+                <Button className='button-green button-green--caret' text={String.fromCharCode(9660)} onClick={this.handleClick} id={'Показать список'}/>
                 {this.state.visible &&
                 <TypeEvent
                     types = {[
