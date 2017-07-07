@@ -133,7 +133,11 @@ export default class Month extends React.Component {
                                 handleClick={this.props.handleEventClick.bind(null, event)}
                             />
                         })}
-
+                        <button
+                            className="c-date__add-event"
+                            onClick={this.props.handleNewEvent.bind(null, 0)}>
+                            +
+                        </button>
                     </MonthCell>}
             </MonthCell>
         });
@@ -154,5 +158,6 @@ Month.propTypes = {
     period: PropTypes.shape().isRequired,
     events: PropTypes.shape().isRequired,
     handleEventClick: PropTypes.func.isRequired,
+    handleNewEvent: PropTypes.func.isRequired,
 };
 
