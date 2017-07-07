@@ -1,3 +1,5 @@
+@import '../Theme/theme.scss';
+
 .g-time-picker {
     * {
         margin: 0;
@@ -7,13 +9,16 @@
     display: flex;
     flex-basis: 50px;
     justify-content: center;
-    outline: red, 1px solid;
-    margin: auto;
+
+    //outline: red, 1px solid;
+    //margin: rem(15);
 
     &__time {
-        width: 50%;
-        margin: 5px;
-        padding: 5px;
+        width: rem(65);
+        height: rem(35);
+        margin: rem(15);
+        padding: rem(3);
+        font: rem(13);
         text-align: center;
     }
 }

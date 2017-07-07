@@ -56,10 +56,11 @@
     }
 
     &__date-block:first-child{
-      margin-top: 60px;
+      margin-top: 180px;
     }
     &__span-title {
         display: inline-block;
+        margin-top: rem(20);
         flex: 1 1 48%;
         text-align: right;
         vertical-align: middle;
@@ -70,14 +71,18 @@
         flex: 1 1 48%;
         vertical-align: middle;
         padding-left: 5px;
-        cursor: pointer;
-        text-align: left;
         color: $blue;
+        cursor: pointer;
         border-bottom: dashed;
-        overflow: hidden;
+        margin-top: rem(20);
     }
 
     &__checkbox {
+      margin-top:0;
+      margin-left: rem(45);
+    }
+    label{
+      margin: rem(20);
     }
 
     &__descr-title {
@@ -122,4 +127,9 @@
        @include button-red;
        margin-left: rem(50);
      }
+
+    &__button:before{
+      content: " ";
+      //background-image: 
+    }
 }
