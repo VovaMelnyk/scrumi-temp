@@ -3,7 +3,6 @@
 .c-event-window {
     * {
         margin: 0;
-        padding: 0;
         border: none;
     }
     .modal__close{
@@ -29,12 +28,15 @@
 
     }
 
+    &__types {
+        position: relative;
+    }
+
     &__event-type {
-        flex-basis: 27%;
+        width: rem(182);
         height: rem(33);
         background-color: #fff;
         text-align: left;
-        font: $font;
         font-weight: 100;
         font-size: rem(13);
         padding-left: rem(10);
