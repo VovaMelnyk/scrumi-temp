@@ -60,6 +60,7 @@
     }
     &__span-title {
         display: inline-block;
+        margin-top: rem(20);
         flex: 1 1 48%;
         text-align: right;
         vertical-align: middle;
@@ -73,9 +74,15 @@
         color: $blue;
         cursor: pointer;
         border-bottom: dashed;
+        margin-top: rem(20);
     }
 
     &__checkbox {
+      margin-top:0;
+      margin-left: rem(45);
+    }
+    label{
+      margin: rem(20);
     }
 
     &__descr-title {
@@ -121,7 +128,8 @@
        margin-left: rem(50);
      }
 
-    &__butoon:before{
+    &__button:before{
       content: " ";
+      //background-image: 
     }
 }
