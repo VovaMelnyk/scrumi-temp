@@ -19,10 +19,11 @@ function DaysOfWeek(props) {
     let days = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
     return (
         <ul className='date-picker__grid date-picker_week-days'>
-            {_.map(days, (weekDay) => {
+            {_.map(days, (weekDay, i) => {
+                const className = `${props.className}__week-day` + (i === 6 ? ` ${props.className}_sunday` : '');
                 return <li
                     key={uuid()}
-                    className={`${props.className}__week-day`}>{weekDay}
+                    className={className}>{weekDay}
                 </li>
             })}
         </ul>

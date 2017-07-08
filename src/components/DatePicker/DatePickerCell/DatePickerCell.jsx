@@ -11,6 +11,7 @@ function DatePickerCell(props) {
     className += (props.cellDate.isSame(moment(), 'day') ? ` ${props.className}_today` : '');
     className += !props.cellDate.isSame(moment(props.shownMonth, 'MM.YYYY'), 'month') ? ` ${props.className}_other-month` : '';
     className += props.cellDate.isSame(moment(props.selectedDate), 'day') ? ` ${props.className}_selected-date` : '';
+    className += !props.cellDate.day() ? ` ${props.className}_sunday` : '';
 
     return (
         <li

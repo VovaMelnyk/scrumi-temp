@@ -180,7 +180,7 @@ class EventWindow extends React.Component {
                     </button>
                     <button
                         className={`${this.props.className}__button`}
-                        onClick={this.showQuestion}
+                        onClick={this.handleSave}
                         id='сохранить'
                     >
                         Сохранить
