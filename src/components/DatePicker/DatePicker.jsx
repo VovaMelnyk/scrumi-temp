@@ -16,7 +16,7 @@ import './DatePicker.scss';
  * @returns {ReactElement} Line with the days of week (Su, Mo, Tu, We, Th, Fr, St)
  */
 function DaysOfWeek(props) {
-    let days = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+    let days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
     return (
         <ul className='date-picker__grid date-picker_week-days'>
             {_.map(days, (weekDay, i) => {
