@@ -1,6 +1,6 @@
 @import '../Theme/theme.scss';
 .date-picker {
-    width: rem(229);
+    width: rem(230);
     //height: rem(250);
     outline: $gray-80 solid 1px;
     position: absolute;
@@ -39,11 +39,13 @@
   align-items: center;
   align-content: center;
   background: #fff;
-  //justify-content: space-between;
+  justify-content: space-between;
 }
     &__week-day{
         background: #808080;
-        //width: rem(27);
+        width: rem(28);
+
+
     }
 &__cell{
 
