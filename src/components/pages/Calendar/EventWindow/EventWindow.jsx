@@ -95,10 +95,14 @@ class EventWindow extends React.Component {
     }
 
     handleChangeEventType(eventType) {
-        this.setState({
+        let newState = {
             eventType: eventType,
             eventTypeVisible: false,
-        });
+        };
+        if (eventType) {
+            newState.endDate = moment(this.state.startDate).add(this.eventDurations[eventType], 'm');
+        }
+        this.setState(newState);
     }
 
     handleDeleteEvent() {
