@@ -27,5 +27,10 @@
 }
 
 .date-picker_sunday {
-    color: red;
+    color: $red;
+}
+
+.date-picker_sunday-day {
+    color: #fff;
+    background: $red;
 }
