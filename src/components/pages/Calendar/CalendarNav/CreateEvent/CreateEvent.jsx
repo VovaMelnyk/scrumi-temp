@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import './CreateEvent.scss';
 
@@ -28,6 +29,7 @@ export default class CreateEvent extends React.Component {
 
     handleSelectEventType(eventType) {
         this.props.handleCreateEvent(eventType);
+        this.handleClick();
     }
 
     handleEventWindowHide() {
@@ -37,9 +39,14 @@ export default class CreateEvent extends React.Component {
     }
 
     render() {
+
         return(
             <div className='event'>
-                <Button className="button-green" text="Создать событие" onClick={this.props.handleCreateEvent.bind(null, 0)} id={'Создать событие'}/>
+                <Button
+                    className="button-green"
+                    text="Создать событие"
+                    onClick={this.props.handleCreateEvent.bind(null, 0, moment())}
+                    id={'Создать событие'}/>
                 <Button className='button-green button-green--caret' text={String.fromCharCode(9660)} onClick={this.handleClick} id={'Показать список'}/>
                 {this.state.visible &&
                 <TypeEvent

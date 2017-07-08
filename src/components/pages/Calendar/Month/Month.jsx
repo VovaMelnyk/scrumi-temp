@@ -116,7 +116,7 @@ export default class Month extends React.Component {
     }
 
     handleAddEvent(cellDate) {
-        this.props.handleNewEvent(0, cellDate);
+        this.props.handleNewEvent(0, cellDate.hour(moment().hour()).minute(moment().minute()));
         this.handleEventListHide(cellDate);
         this.skipClick = true;
     }

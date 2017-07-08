@@ -16,13 +16,15 @@ class EventWindow extends React.Component {
         super(props);
 
         moment.locale('ru');
+        this.eventDurations = [60, 15, 60, 60];
         this.state = {
             isModified: false,
             event: this.props.event ? this.props.event : {},
             eventType: this.props.event ? this.props.event.eventType : this.props.newEventType,
             assignType: this.props.event ? this.props.event.assignType : 0,
             startDate: this.props.event ? this.props.event.startDate : this.props.newEventDate,
-            endDate: this.props.event ? this.props.event.endDate : this.props.newEventDate,
+            endDate: this.props.event ? this.props.event.endDate : moment(this.props.newEventDate).add(this.eventDurations[this.props.newEventType], 'm'),
+            duration: this.eventDurations[this.props.event ? this.props.event.assignType : 0],
             eventTypeVisible: false,
             questionVisible: false,
             buttonId: null
@@ -73,6 +75,9 @@ class EventWindow extends React.Component {
         newEvent[dates[dateNum]] = newDate;
         if (typeof this.findAssignType[newAssignType] != "undefined") {
             newEvent.assignType = this.findAssignType[newAssignType];
+        }
+        if (!dateNum) {
+            newEvent[dates[1]] = moment(newDate).add(this.state.duration, 'm');
         }
         this.setState(newEvent);
     }
