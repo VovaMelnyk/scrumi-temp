@@ -47,7 +47,6 @@ class EventWindow extends React.Component {
         this.handleClickEventType = this.handleClickEventType.bind(this);
         this.handleChangeEventType = this.handleChangeEventType.bind(this);
         this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
-        this.handleCloseList = this.handleCloseList.bind(this);
         this.showQuestion = this.showQuestion.bind(this);
 
     }
@@ -90,7 +89,7 @@ class EventWindow extends React.Component {
 
     handleClickEventType() {
         this.setState({
-            eventTypeVisible: true,
+            eventTypeVisible: !this.state.eventTypeVisible
         })
     }
 
@@ -109,12 +108,6 @@ class EventWindow extends React.Component {
         console.log('delete event with id', this.state.event.id);
         this.props.handleDeleteEvent(this.state.event.id);
         this.props.handleHide();
-    }
-
-    handleCloseList() {
-        this.setState({
-            eventTypeVisible: false,
-        });
     }
 
     showQuestion(e) {
@@ -212,8 +205,10 @@ class EventWindow extends React.Component {
                                 {title:'Ретро', key:'retro'},
                                 {title:'Дедлайн', key:'deadline'}
                             ]}
-                            handleClick={this.handleCloseList}
-                            onClick={this.handleChangeEventType}/>}
+                            handleClick={this.handleClickEventType}
+                            onClick={this.handleChangeEventType}
+                            outsideClickIgnoreClass={'c-event-window__event-type'}
+                        />}
                     </div>
 
                     {dateBlock}

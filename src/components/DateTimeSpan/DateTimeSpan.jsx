@@ -23,9 +23,10 @@ class DateTimeSpan extends React.Component {
 
 
         this.handleClick = this.handleClick.bind(this);
-        this.handleHide = this.handleHide.bind(this);
+        // this.handleHide = this.handleHide.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
+        this.stopPropagation = this.stopPropagation.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -42,20 +43,19 @@ class DateTimeSpan extends React.Component {
     }
 
     handleClick() {
-        this.setState(
-            {
-                visible: true,
-            }
-        );
-    }
-
-    handleHide() {
         this.setState({
-            visible: false,
-        });
-
-        this.props.handleChange(this.state.date, this.state.showTime);
+                visible: !this.state.visible,
+            });
     }
+
+    // handleHide() {
+    //     this.setState({
+    //         visible: false,
+    //     });
+    //
+    //     this.props.handleChange(this.state.date, this.state.showTime);
+    //     console.log('outside')
+    // }
 
     handleSelect(newDate) {
         this.setState(
@@ -78,6 +78,10 @@ class DateTimeSpan extends React.Component {
         }
     }
 
+    stopPropagation(e) {
+        e.stopPropagation();
+    }
+
     render() {
         let format = this.state.showTime ? this.dateFormat[0] : this.dateFormat[1];
         return (
@@ -88,11 +92,14 @@ class DateTimeSpan extends React.Component {
                 {this.state.date.format(format)}
                 {this.state.visible &&
                 <DatePicker selectedDate={moment(this.state.date)}
-                            handleClickOutside={this.handleHide}
+                            handleClickOutside={this.handleClick}
                             handleSelect={this.handleSelect}
                             handleTimeChange={this.handleTimeChange}
                             disableTime={this.state.disableTime}
-                            showTime={this.state.showTime}/>
+                            showTime={this.state.showTime}
+                            outsideClickIgnoreClass={'c-event-window__date-span'}
+                            stopPropagation={this.stopPropagation}
+                />
                 }
             </span>
         )

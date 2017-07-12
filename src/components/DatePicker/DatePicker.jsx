@@ -107,7 +107,9 @@ class DatePicker extends React.Component {
             />
         });
         return (
-            <div className={this.props.className}>
+            <div className={this.props.className}
+                 onClick={this.props.stopPropagation}
+            >
                 <div className={`${this.props.className}__nav`}>
                     <span
                         className={`${this.props.className}__prev`}

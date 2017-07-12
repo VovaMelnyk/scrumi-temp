@@ -22,7 +22,7 @@ class Period extends React.Component {
 
     handleClick() {
         this.setState({
-            visible: true
+            visible: !this.state.visible
         })
     }
 

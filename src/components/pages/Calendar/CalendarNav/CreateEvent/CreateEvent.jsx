@@ -27,6 +27,7 @@ export default class CreateEvent extends React.Component {
         });
     }
 
+
     handleSelectEventType(eventType) {
         this.props.handleCreateEvent(eventType);
         this.handleClick();
@@ -57,7 +58,9 @@ export default class CreateEvent extends React.Component {
                     {title:'Ретро', key:'retro'}
                     ]}
                     handleClick={this.handleClick}
-                    onClick={this.handleSelectEventType}/>
+                    onClick={this.handleSelectEventType}
+                    outsideClickIgnoreClass={'button-green--caret'}
+                />
                 }
             </div>
         );
