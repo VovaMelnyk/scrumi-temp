@@ -32,7 +32,7 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: [['env', {modules: false}], 'react'],
+                            presets: [['env', {modules: false}], 'react', 'stage-2'],
                             plugins: ['react-hot-loader/babel']
                         }
                     }
