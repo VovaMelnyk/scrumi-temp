@@ -14,6 +14,8 @@ import ModalWindow from '../../ModalWindow/ModalWindow'
 
 import EventWindow from './EventWindow/EventWindow';
 
+import api from './../../api/api';
+
 
 function createEventMap(eventArray) {
     const eventMap = new Map;
@@ -38,28 +40,7 @@ export default class Calendar extends React.Component {
             newEventType: 0,
             newEventStartDate: moment(),
             eventIdCounter: 2,
-            events : [
-                {
-                    id: 1,
-                    startDate: moment('08.07.2017 14:00', 'DD.MM.YYYY HH:mm'),
-                    endDate: moment('08.07.2017 18:00', 'DD.MM.YYYY HH:mm'),
-                    eventType: 3,
-                    assignType: 0,
-                    title: 'Offline встреча',
-                    description: 'Разбираем прошедший спринт',
-                    location: 'Офис GoIT'
-                },
-                {
-                    id: 2,
-                    startDate: moment('08.07.2017 19:00', 'DD.MM.YYYY HH:mm'),
-                    endDate: moment('08.07.2017', 'DD.MM.YYYY'),
-                    eventType: 0,
-                    assignType: 1,
-                    title: 'Гулянка в пабе',
-                    description: 'Тимбилдинг :)',
-                    location: 'This is ПИВБАР'
-                }
-            ],
+            events : [],
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -74,7 +55,25 @@ export default class Calendar extends React.Component {
         this.handleSaveEvent = this.handleSaveEvent.bind(this);
         this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
 
+        this.getData = this.getData.bind(this);
         createEventMap(this.state.events);
+        this.getData();
+    }
+
+    getData() {
+        api.processData('http://localhost:3000/events')
+            .then(function(response) {
+                console.log('response', response);
+                this.setState({
+                    events: response.data,
+                })
+            })
+            .catch(function(error) {
+                console.log('error', error);
+            })
+    }
+    componentWillReceiveProps(nextProps) {
+
     }
 
     handleClick() {

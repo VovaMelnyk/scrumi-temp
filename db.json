@@ -1,0 +1,24 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "startDate": 1499511600,
+      "endDate": 1499526000,
+      "eventType": 3,
+      "assignType": 0,
+      "title": "Offline встреча",
+      "description": "Разбираем прошедший спринт",
+      "location": "Офис GoIT"
+    },
+    {
+      "id": 2,
+      "startDate": 1499529600,
+      "endDate": 1499461200,
+      "eventType": 3,
+      "assignType": 0,
+      "title": "Пивоспектива",
+      "description": "Неофициальная часть - тимбилдинг",
+      "location": "This is ПИВБАР!"
+    }
+  ]
+}
