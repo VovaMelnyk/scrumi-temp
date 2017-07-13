@@ -44,4 +44,16 @@
      z-index: 1000;
  }
 
+ .triangle {
+     width: 20px;
+     height: 20px;
+     background: #000000;
+     position: absolute;
+     top: 86%;
+     right: 0;
+
+     &--hide{
+         display: none;
+     }
+ }
 

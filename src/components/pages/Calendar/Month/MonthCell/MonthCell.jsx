@@ -5,6 +5,11 @@ import onClickOutside from 'react-onclickoutside';
 
 import './MonthCell.scss';
 
+const Open = (props) => {
+    return (
+        <div className={props.className}></div>
+    )
+};
 
 
 class MonthCell extends React.Component {
@@ -47,6 +52,7 @@ class MonthCell extends React.Component {
                     {this.props.cellDate.format('DD')}
                 </span>
                 {this.props.children}
+               {this.props.children[0].length > 2  ? <Open className={this.props.test}/> : false}
             </div>
         )
     }
@@ -66,3 +72,5 @@ MonthCell.defaultProps = {
 };
 
 export default onClickOutside(MonthCell);
+
+

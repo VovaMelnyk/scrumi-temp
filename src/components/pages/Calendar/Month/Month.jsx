@@ -104,6 +104,7 @@ export default class Month extends React.Component {
             });
             this.eventListVisible = visible;
         }
+        console.log('open list')
     }
 
     handleEventListHide(cellDate) {
@@ -127,7 +128,9 @@ export default class Month extends React.Component {
                 month={this.state.now}
                 key={uuid()}
                 cellDate={cell}
-                handleClick={this.handleCellClick}>
+                handleClick={this.handleCellClick}
+                test="triangle"
+            >
                 {this.props.events.has(cell.format('DD.MM.YYYY')) &&
                     _.map(this.props.events.get(cell.format('DD.MM.YYYY')), event => {
                         return <Event
@@ -144,7 +147,9 @@ export default class Month extends React.Component {
                         cellDate={cell}
                         className='c-date--event-list'
                         canHide={true}
-                        handleHide={this.handleEventListHide}>
+                        handleHide={this.handleEventListHide}
+                        test="triangle--hide">
+
                         {this.props.events.has(cell.format('DD.MM.YYYY')) &&
                         _.map(this.props.events.get(cell.format('DD.MM.YYYY')), event => {
                             return <Event
