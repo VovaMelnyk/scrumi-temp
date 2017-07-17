@@ -24,7 +24,6 @@ export default class CalendarNav extends React.Component {
                     switchMonth = {this.props.switchMonth}
                 />
                 <CreateEvent
-                    onCloseModal={this.props.onCloseModal}
                     handleSaveEvent={this.props.handleSaveEvent}
                     handleCreateEvent={this.props.handleCreateEvent}
                 />
@@ -35,8 +34,7 @@ export default class CalendarNav extends React.Component {
 
 CalendarNav.propTypes = {
     period: PropTypes.shape().isRequired,
-    onClick: PropTypes.func.isRequired,
-    onCloseModal: PropTypes.func.isRequired,
+    switchMonth: PropTypes.func.isRequired,
     handleSaveEvent: PropTypes.func.isRequired,
     handleCreateEvent: PropTypes.func.isRequired,
 };

@@ -49,6 +49,6 @@ export default class SwitchMonth extends React.Component {
 
 SwitchMonth.propTypes = {
     period: PropTypes.shape().isRequired,
-    onClick: PropTypes.func.isRequired,
+    switchMonth: PropTypes.func.isRequired,
 
 };

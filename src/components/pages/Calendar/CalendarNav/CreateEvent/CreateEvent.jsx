@@ -69,7 +69,6 @@ export default class CreateEvent extends React.Component {
 
 
 CreateEvent.propTypes = {
-    onCloseModal: PropTypes.func.isRequired,
     handleSaveEvent: PropTypes.func.isRequired,
     handleCreateEvent: PropTypes.func.isRequired,
 };
