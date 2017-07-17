@@ -21,9 +21,11 @@
 
     &__close{
         cursor: pointer;
-        height: rem(18);
         position: absolute;
-        right:rem(5) ;
+        color: $gray-50;
+        top: rem(10);
+        right: rem(10);
+        font-size: rem(12);
     }
 }
 
