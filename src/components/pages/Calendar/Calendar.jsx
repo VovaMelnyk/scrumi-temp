@@ -210,6 +210,7 @@ export default class Calendar extends React.Component {
 */}
 
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
 
 
 const mathReducer = (state = {
@@ -256,10 +257,19 @@ const userReducer = (state = {
     return state;
 };
 
-const store = createStore(combineReducers({mathReducer, userReducer}));
+const myLogger = (store) => (next) => (action) => {
+    console.log('Logged Action: ', action);
+    next(action);
+};
+
+const store = createStore(
+    combineReducers({mathReducer, userReducer}),
+    {},
+    applyMiddleware(createLogger())
+);
 
 store.subscribe(() => {
-    console.log('Store updated', store.getState());
+    // console.log('Store updated', store.getState());
 });
 
 store.dispatch({
