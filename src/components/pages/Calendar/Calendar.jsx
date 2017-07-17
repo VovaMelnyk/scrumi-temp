@@ -179,7 +179,7 @@ export default class Calendar extends React.Component {
             <div className='calendar'>
                 <CalendarNav
                 period = {this.state.fromDate}
-                onClick = {this.switchMonth}
+                switchMonth = {this.switchMonth}
                 onCloseModal={this.toggleModal}
                 handleSaveEvent={this.handleSaveEvent}
                 handleCreateEvent={this.handleNewEvent}

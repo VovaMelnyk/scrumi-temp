@@ -13,18 +13,34 @@ export default class SwitchMonth extends React.Component {
         this.state ={
             now: this.props.period
         };
+
+        this.switchMonthKeyboard = this.switchMonthKeyboard.bind(this);
     }
+
+    switchMonthKeyboard(event) {
+        event.keyCode === 39 ? this.props.switchMonth(1) : null;
+        event.keyCode === 37 ? this.props.switchMonth(-1) : null;
+    }
+
+    componentDidMount() {
+        window.addEventListener('keydown', this.switchMonthKeyboard);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.switchMonthKeyboard);
+    }
+
     render(){
         return(
             <div className='current-month'>
                 <span className='current-month__left-arrow'
-                      onClick={this.props.onClick.bind(null, -1)} >{String.fromCharCode(8592)}</span>
+                      onClick={this.props.switchMonth.bind(null, -1)} >{String.fromCharCode(8592)}</span>
                 <div className='current-month__date'>
                     <span className="year">{this.state.now.format('YYYY')}</span>
                     <span className="month">{this.state.now.format('MMMM')}</span>
                 </div>
                 <span className='current-month__right-arrow'
-                      onClick={this.props.onClick.bind(null, 1)}>{String.fromCharCode(8594)}</span>
+                      onClick={this.props.switchMonth.bind(null, 1)}>{String.fromCharCode(8594)}</span>
 
             </div>
         )

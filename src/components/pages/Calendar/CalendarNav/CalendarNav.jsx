@@ -21,7 +21,7 @@ export default class CalendarNav extends React.Component {
                 <Period />
                 <SwitchMonth
                     period ={this.props.period}
-                    onClick = {this.props.onClick}
+                    switchMonth = {this.props.switchMonth}
                 />
                 <CreateEvent
                     onCloseModal={this.props.onCloseModal}
