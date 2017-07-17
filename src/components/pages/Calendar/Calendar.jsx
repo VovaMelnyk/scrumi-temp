@@ -32,7 +32,7 @@ export default class Calendar extends React.Component {
         this.state = {
             visible: false,
             fromDate: moment(),
-            isOpenModal: false,
+            // isOpenModal: true,
             editEventWindow: false,
             newEvent: true,
             newEventType: 0,
@@ -65,7 +65,7 @@ export default class Calendar extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.switchMonth = this.switchMonth.bind(this);
-        this.toggleModal = this.toggleModal.bind(this);
+        // this.toggleModal = this.toggleModal.bind(this);
         this.handleEventClick = this.handleEventClick.bind(this);
         this.handleHide = this.handleHide.bind(this);
         this.handleNewEvent = this.handleNewEvent.bind(this);
@@ -95,11 +95,11 @@ export default class Calendar extends React.Component {
         })
     }
 
-    toggleModal() {
-        this.setState({
-            isOpenModal: !this.state.isOpenModal
-        });
-    }
+    // toggleModal() {
+    //     this.setState({
+    //         isOpenModal: !this.state.isOpenModal
+    //     });
+    // }
 
     handleEventClick(event) {
         this.setState({
@@ -173,6 +173,7 @@ export default class Calendar extends React.Component {
                 handleDeleteEvent={this.handleDeleteEvent}/>
     }
 
+
     render() {
         return (
             <div className='calendar'>
@@ -194,16 +195,19 @@ export default class Calendar extends React.Component {
                     />
                 }/>
                 <Route  path='/calendar/sprint' component={Sprint} />
-                {this.state.isOpenModal &&
+                /*{this.state.isOpenModal &&
                     <ModalWindow
                         onCloseModal={this.toggleModal}
                         className=''>
-                    </ModalWindow>}
+                    </ModalWindow>}*/
+
                 {this.state.editEventWindow &&
-                    this.createOrEditEventWindow(this.state.newEvent)
+                this.createOrEditEventWindow(this.state.newEvent)
                 }
 
             </div>
         );
     }
 }
+
+
