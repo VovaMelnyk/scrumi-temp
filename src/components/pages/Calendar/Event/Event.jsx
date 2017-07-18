@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import './Event.scss';
 
@@ -27,7 +28,7 @@ class Event extends React.Component {
                 className={this.props.className + (this.props.event.eventType ? ` ${this.props.className}--${this.classNames[this.props.event.eventType - 1]}` : '')}
                 onClick={this.handleClick}>
                 {this.props.event.assignType!==2 &&
-                    <span className={`${this.props.className}__time`}>{this.props.event.startDate.format('HH:mm')}</span>}
+                    <span className={`${this.props.className}__time`}>{moment.unix(this.props.event.startDate).format('HH:mm')}</span>}
                 <span className={`${this.props.className}__cell`}>{this.props.event.title}</span>
             </div>
         )

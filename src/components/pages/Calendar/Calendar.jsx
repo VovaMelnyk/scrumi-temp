@@ -18,11 +18,10 @@ import EventWindow from './EventWindow/EventWindow';
 function createEventMap(eventArray) {
     const eventMap = new Map;
     _.forEach(eventArray, function(item) {
-        let dayEventArray = eventMap.has(item.startDate.format('DD.MM.YYYY')) ? eventMap.get(item.startDate.format('DD.MM.YYYY')) : [];
-        dayEventArray.push(item);
-        eventMap.set(item.startDate.format('DD.MM.YYYY'), dayEventArray);
+        let dayEventArray = eventMap.has(moment.unix(item.startDate).format('DD.MM.YYYY')) ? eventMap.get(moment.unix(item.startDate).format('DD.MM.YYYY')) : [];
+        dayEventArray.splice(_.sortedIndexBy(dayEventArray, item, 'startDate'), 0, item);
+        eventMap.set(moment.unix(item.startDate).format('DD.MM.YYYY'), dayEventArray);
     });
-
     return eventMap
 }
 
@@ -37,12 +36,12 @@ export default class Calendar extends React.Component {
             newEvent: true,
             newEventType: 0,
             newEventStartDate: moment(),
-            eventIdCounter: 2,
+            eventIdCounter: 3,
             events : [
                 {
                     id: 1,
-                    startDate: moment('08.07.2017 14:00', 'DD.MM.YYYY HH:mm'),
-                    endDate: moment('08.07.2017 18:00', 'DD.MM.YYYY HH:mm'),
+                    startDate: moment('08.07.2017 14:00', 'DD.MM.YYYY HH:mm').format('X'),
+                    endDate: moment('08.07.2017 18:00', 'DD.MM.YYYY HH:mm').format('X'),
                     eventType: 3,
                     assignType: 0,
                     title: 'Offline встреча',
@@ -51,13 +50,23 @@ export default class Calendar extends React.Component {
                 },
                 {
                     id: 2,
-                    startDate: moment('08.07.2017 19:00', 'DD.MM.YYYY HH:mm'),
-                    endDate: moment('08.07.2017', 'DD.MM.YYYY'),
+                    startDate: moment('08.07.2017 19:00', 'DD.MM.YYYY HH:mm').format('X'),
+                    endDate: moment('08.07.2017', 'DD.MM.YYYY').format('X'),
                     eventType: 0,
                     assignType: 1,
                     title: 'Гулянка в пабе',
                     description: 'Тимбилдинг :)',
                     location: 'This is ПИВБАР'
+                },
+                {
+                    id: 3,
+                    startDate: moment('08.07.2017 11:00', 'DD.MM.YYYY HH:mm').format('X'),
+                    endDate: moment('08.07.2017', 'DD.MM.YYYY').format('X'),
+                    eventType: 0,
+                    assignType: 1,
+                    title: 'Утреннее мероприятие',
+                    description: 'Ранненько :)',
+                    location: ''
                 }
             ],
         };
@@ -74,7 +83,7 @@ export default class Calendar extends React.Component {
         this.handleSaveEvent = this.handleSaveEvent.bind(this);
         this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
 
-        createEventMap(this.state.events);
+        // createEventMap(this.state.events);
     }
 
     handleClick() {
@@ -127,6 +136,8 @@ export default class Calendar extends React.Component {
 
     handleSaveEvent(event) {
         let newEvent = event;
+        newEvent.startDate = newEvent.startDate.unix();
+        newEvent.endDate = newEvent.endDate.unix();
         let newEvents = this.state.events;
         if (!event.id) {
             newEvent.id = this.state.eventIdCounter + 1;
